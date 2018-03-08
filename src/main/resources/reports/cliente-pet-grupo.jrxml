@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pet-iReport" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="34bbff6a-af20-4ee8-b41b-350756214296">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<queryString>
+		<![CDATA[SELECT USU.NAME AS 'Proprietario',
+       PET.COD_PET AS 'Codigo',
+       USU.PHONE AS 'Telefone',
+       PET.NAME AS 'Animal',
+       PET.DATE_TBIRTH as 'DataNascimento',
+       CASE PET.SEX
+           WHEN 0 THEN 'Macho'
+           ELSE 'Fêmea'
+       END AS 'Sexo',
+       CASE PET.SIZE
+           WHEN 0 THEN 'Pequeno'
+           WHEN 1 THEN 'Medio'
+           WHEN 2 THEN 'Grande'
+           ELSE 'Gigante'
+       END AS 'Porte',
+       BREED.NAME AS 'Raca'
+FROM TB_PET PET
+INNER JOIN TB_BREED BREED ON BREED.ID = PET.COD_BREED
+INNER JOIN TB_USER USU ON USU.COD_USER = PET.COD_OWNER
+GROUP BY PET.NAME, USU.NAME
+ORDER BY USU.NAME, PET.COD_PET]]>
+	</queryString>
+	<field name="Proprietario" class="java.lang.String"/>
+	<field name="Codigo" class="java.lang.Long"/>
+	<field name="Telefone" class="java.lang.String"/>
+	<field name="Animal" class="java.lang.String"/>
+	<field name="DataNascimento" class="java.sql.Timestamp"/>
+	<field name="Sexo" class="java.lang.String"/>
+	<field name="Porte" class="java.lang.String"/>
+	<field name="Raca" class="java.lang.String"/>
+	<variable name="V_COUNT" class="java.lang.Integer" resetType="Group" resetGroup="PROPRIETARIO" calculation="Count">
+		<variableExpression><![CDATA[1]]></variableExpression>
+	</variable>
+	<group name="PROPRIETARIO">
+		<groupExpression><![CDATA[$F{Proprietario}]]></groupExpression>
+		<groupHeader>
+			<band height="57">
+				<staticText>
+					<reportElement mode="Transparent" x="0" y="-1" width="91" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="f77fb35d-7e10-44b2-ab00-371c5803577d"/>
+					<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+						<font fontName="Arial" size="14" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<text><![CDATA[Proprietário:]]></text>
+				</staticText>
+				<textField pattern="" isBlankWhenNull="false">
+					<reportElement mode="Transparent" x="94" y="-2" width="181" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="03d67f06-682b-4d40-a744-92ab5b340f10"/>
+					<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+						<font fontName="SansSerif" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Proprietario}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Transparent" x="0" y="19" width="138" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="3ffe3bee-96d7-41f4-a9e0-0c762faf0a7d"/>
+					<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+						<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<text><![CDATA[Dados dos Animais]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="387" y="35" width="59" height="15" forecolor="#000000" uuid="21427374-2aee-423e-8232-760eda5efb08"/>
+					<text><![CDATA[Porte]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="0" y="35" width="92" height="15" forecolor="#000000" uuid="dc5b21fc-312d-45a4-be43-af85102a6890"/>
+					<textElement>
+						<font isBold="true" isItalic="false" isStrikeThrough="false"/>
+					</textElement>
+					<text><![CDATA[Código]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="83" y="35" width="85" height="15" forecolor="#000000" uuid="4a4cb067-b327-4abd-9df0-16d98e0c1286"/>
+					<text><![CDATA[Nome]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="467" y="35" width="92" height="15" forecolor="#000000" uuid="5966953f-9a59-450e-ace0-e9e52e7001b6"/>
+					<text><![CDATA[Raça]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="186" y="38" width="130" height="15" forecolor="#000000" uuid="6d088de3-4da3-4b36-bcfb-f09130fb2b24"/>
+					<text><![CDATA[Data de nasc.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="325" y="35" width="78" height="15" forecolor="#000000" uuid="2d9ba87f-6482-4db7-b6cc-acf12236c142"/>
+					<text><![CDATA[Sexo]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="278" y="-1" width="74" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="8927f798-670e-4e88-b461-ff01be216771"/>
+					<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+						<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<text><![CDATA[Telefone:]]></text>
+				</staticText>
+				<textField pattern="" isBlankWhenNull="false">
+					<reportElement mode="Transparent" x="335" y="-2" width="100" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="0324cb9f-c10c-4817-8220-795c7cc33e5a"/>
+					<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+						<font fontName="SansSerif" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Telefone}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="41">
+				<staticText>
+					<reportElement mode="Transparent" x="0" y="0" width="138" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="c0d04f82-942d-4d91-9953-1b6bebcff1bc"/>
+					<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+						<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<text><![CDATA[Quantidade de animais:]]></text>
+				</staticText>
+				<textField pattern="" isBlankWhenNull="false">
+					<reportElement mode="Transparent" x="139" y="-1" width="177" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="5a0a8573-8fd7-4abd-a9a3-f9fb17a77b8a"/>
+					<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+						<font fontName="SansSerif" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{PROPRIETARIO_COUNT}]]></textFieldExpression>
+				</textField>
+				<rectangle>
+					<reportElement mode="Opaque" x="0" y="28" width="555" height="1" forecolor="#FFFFFF" backcolor="#000000" uuid="75121870-81db-412a-846e-947a1f07893e"/>
+					<graphicElement>
+						<pen lineStyle="Dashed" lineColor="#000000"/>
+					</graphicElement>
+				</rectangle>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="68" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="0" y="5" width="263" height="33" uuid="019c1391-7946-404c-b769-cde5fb9abf5e"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Relátorio de Clientes]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="350" y="0" width="205" height="57" uuid="0234e31d-66de-40a9-ac78-582d36af1338"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Arial" size="36" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DogSystem]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="350" y="45" width="200" height="20" uuid="7addd133-3ef1-4487-a960-7dde6bdb152d"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Um jeito novo de gerênciar seu pet]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<detail>
+		<band height="25" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="-2" width="555" height="17" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="a1d9af0f-fd74-4729-9d25-86b3d4f27f72">
+					<printWhenExpression><![CDATA[$V{V_COUNT}.intValue() % 2 != 0]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="85ad4652-9e6b-41fb-a14f-207ea17d53ed"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement style="Detail" x="0" y="3" width="92" height="15" uuid="e6092704-6d44-4fb8-a3ad-865af862644d"/>
+				<textFieldExpression><![CDATA[$F{Codigo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="323" y="2" width="92" height="20" uuid="a440637b-1a9a-4e18-ba63-050e060277bf"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Sexo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="466" y="2" width="92" height="20" uuid="253a345b-660d-4cba-b6dc-c1f0d291bf5f"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Raca}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="386" y="2" width="78" height="20" uuid="5119ef66-1d23-4645-9b6f-20804abf510a"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Porte}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="82" y="2" width="76" height="20" uuid="d721c0b8-5a11-4e89-aed7-c8c634a8e37b"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Animal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="186" y="0" width="126" height="20" uuid="b6c3b5a3-9c76-4b75-a56b-bdf41653109c"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd/MM/yyyy").format($F{DataNascimento})]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="aa5d1dc6-8410-4387-8a34-84a4f5c13c33"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" forecolor="#000000" uuid="fdfe3e50-a277-495b-9258-019619174283"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" a"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" forecolor="#000000" uuid="c2680de6-dd4d-46cc-87b4-01227268189d"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" forecolor="#000000" uuid="32ab53fb-ca06-4f52-9881-b5051c7b52f6"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,26 @@
+language: java
+
+jdk:
+  - oraclejdk8
+
+services:
+  - mysql
+ 
+before_install:
+  - mysql -e 'CREATE DATABASE if not exists tb_integration;'
+  - mysql -u root -e "CREATE USER 'user'@'localhost' IDENTIFIED BY '123456';"
+  - mysql -u root -e "GRANT ALL ON tb_integration.* TO 'user'@'localhost';"
+
+script: 
+  - mvn test -Dspring.profiles.active=tests
+  - mvn cobertura:cobertura -Dspring.profiles.active=tests
+
+notifications:
+  email:
+    recipients:
+      - leonardomdeoli@gmail.com
+    on_success: always # default: change
+    on_failure: always # default: always
+  
+after_success:
+   - bash <(curl -s https://codecov.io/bash)
