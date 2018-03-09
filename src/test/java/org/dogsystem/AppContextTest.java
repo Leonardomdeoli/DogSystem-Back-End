@@ -1,4 +1,4 @@
-package org.dogsystem.test;
+package org.dogsystem;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

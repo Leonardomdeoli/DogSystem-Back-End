@@ -5,6 +5,7 @@ import org.dogsystem.entity.CityEntity;
 import org.dogsystem.entity.NeighborhoodEntity;
 import org.dogsystem.entity.UfEntity;
 import org.dogsystem.entity.UserEntity;
+import org.dogsystem.exception.ServerException;
 import org.dogsystem.repository.AddressRepository;
 import org.dogsystem.repository.CityRepository;
 import org.dogsystem.repository.NeighborhoodRepository;
@@ -28,7 +29,14 @@ public class AddressService {
 	private UfRepository ufRepository;
 	
 	public AddressEntity getAddress(UserEntity user){
-		return addressRepository.findByZipcode(user.getAddress().getZipcode());
+		AddressEntity addressEntity = user.getAddress();
+		
+		if (addressEntity == null) {
+			String errorMessage = "Endereço não cadastrado";
+			throw new ServerException(errorMessage);
+		}
+
+		return addressRepository.findByZipcode(addressEntity.getZipcode());
 	}
 
 	public AddressEntity addressBuild(AddressEntity address) {
