@@ -1,10 +1,12 @@
 package org.dogsystem.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 import org.dogsystem.entity.PetEntity;
 import org.dogsystem.service.ImageService;
 import org.dogsystem.service.PetService;
@@ -32,7 +34,7 @@ public class PetController {
 	@Autowired
 	private ImageService imageService;
 
-	private final Logger LOGGER = Logger.getLogger(this.getClass());
+	private final Logger LOGGER = LogManager.getLogger(this.getClass());
 
 	private Message<PetEntity> message = new Message<PetEntity>();
 
@@ -41,13 +43,13 @@ public class PetController {
 		LOGGER.info("Solicitando todos os animais");
 		return petService.findAll();
 	}
-	
+
 	@GetMapping(value = "/id/{id}")
-	public PetEntity findyPet(@PathVariable(name = "id") Long id) {
+	public Optional<PetEntity> findyPet(@PathVariable(name = "id") Long id) {
 		LOGGER.info("Buscando animal de id " + id);
 		return petService.findyPet(id);
 	}
-	
+
 	@Transactional
 	@PostMapping
 	public ResponseEntity<Message<PetEntity>> insert(@RequestBody PetEntity pet) {
@@ -64,10 +66,11 @@ public class PetController {
 	public ResponseEntity<Message<PetEntity>> update(@RequestBody PetEntity pet) {
 		LOGGER.info(String.format("Solicitação de atualização do animal %s.", pet.getName()));
 
-		PetEntity petOld = petService.findById(pet.getId());
-
-		if (petOld.getImage().getId() != pet.getImage().getId()) {
-			imageService.delete(petOld.getImage());
+		Optional<PetEntity> petOld = petService.findById(pet.getId());
+		if (petOld.isPresent()) {
+			if (petOld.get().getImage().getId() != pet.getImage().getId()) {
+				imageService.delete(petOld.get().getImage());
+			}
 		}
 
 		pet = petService.save(pet);

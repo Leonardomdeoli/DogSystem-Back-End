@@ -1,8 +1,10 @@
 package org.dogsystem.service;
 
 import java.util.List;
+import java.util.Optional;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 import org.dogsystem.entity.BreedEntity;
 import org.dogsystem.enumeration.TipoAnimal;
 import org.dogsystem.repository.BreedRepository;
@@ -18,7 +20,7 @@ public class BreedService {
 	@Autowired
 	private BreedRepository breedRepository;
 
-	private final Logger LOGGER = Logger.getLogger(this.getClass());
+	private final Logger LOGGER = LogManager.getLogger(this.getClass());
 
 	public List<BreedEntity> findAll() {
 		LOGGER.info("Buscando todas as raças.");
@@ -40,8 +42,8 @@ public class BreedService {
 		return breedRepository.findByNameStartingWithAndTipoAnimal(name, animal, pageable);
 	}
 
-	public BreedEntity findOne(Long id) {
-		return breedRepository.findOne(id);
+	public Optional<BreedEntity> findOne(Long id) {
+		return breedRepository.findById(id);
 	}
 
 	public void delete(BreedEntity breed) {

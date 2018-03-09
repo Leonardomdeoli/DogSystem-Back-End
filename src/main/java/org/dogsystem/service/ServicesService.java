@@ -1,6 +1,10 @@
 package org.dogsystem.service;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+
+import java.util.Optional;
+
+import org.apache.logging.log4j.LogManager;
 import org.dogsystem.entity.ServicesEntity;
 import org.dogsystem.enumeration.Size;
 import org.dogsystem.repository.ServicesRepository;
@@ -16,7 +20,7 @@ public class ServicesService {
 	@Autowired
 	private ServicesRepository serviceRepo;
 
-	private final Logger LOGGER = Logger.getLogger(this.getClass());
+	private final Logger LOGGER = LogManager.getLogger(this.getClass());
 
 	public Page<ServicesEntity> findAll(int pagina, int qtd) {
 		LOGGER.info("Buscando todos os serviços.");
@@ -33,8 +37,8 @@ public class ServicesService {
 		return serviceRepo.save(service);
 	}
 
-	public ServicesEntity findById(Long id) {
-		return serviceRepo.findOne(id);
+	public Optional<ServicesEntity> findById(Long id) {
+		return serviceRepo.findById(id);
 	}
 
 	public Page<ServicesEntity> findAllServices(String name, Size size,int pagina, int qtd) {

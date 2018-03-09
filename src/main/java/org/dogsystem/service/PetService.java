@@ -1,8 +1,10 @@
 package org.dogsystem.service;
 
 import java.util.List;
+import java.util.Optional;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 import org.dogsystem.entity.PetEntity;
 import org.dogsystem.repository.PetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +16,7 @@ public class PetService {
 	@Autowired
 	private PetRepository petRepository;
 
-	private final Logger LOGGER = Logger.getLogger(this.getClass());
+	private final Logger LOGGER = LogManager.getLogger(this.getClass());
 
 	public List<PetEntity> findAll() {
 		LOGGER.info("Buscando todos os Animais.");
@@ -31,11 +33,11 @@ public class PetService {
 		return petRepository.save(pet);
 	}
 	
-	public PetEntity findById(Long id){
-		return petRepository.findOne(id);
+	public Optional<PetEntity> findById(Long id){
+		return petRepository.findById(id);
 	}
 
-	public PetEntity findyPet(Long id) {
-		return petRepository.findOne(id);
+	public Optional<PetEntity> findyPet(Long id) {
+		return petRepository.findById(id);
 	}
 }

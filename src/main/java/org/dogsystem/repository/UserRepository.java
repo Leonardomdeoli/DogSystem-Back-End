@@ -1,5 +1,7 @@
 package org.dogsystem.repository;
 
+import java.util.Optional;
+
 import org.dogsystem.entity.UserEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -9,7 +11,7 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
 	public UserEntity findByEmail(String email);
 	
-	public UserEntity findById(Long id);
+	public Optional<UserEntity> findById(Long id);
 	
 	public UserEntity findByEmailOrName(String email, String name);
 	

@@ -1,6 +1,10 @@
 package org.dogsystem.service;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+
+import java.util.Optional;
+
+import org.apache.logging.log4j.LogManager;
 import org.dogsystem.entity.UserEntity;
 import org.dogsystem.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +15,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
 	
-	private final Logger LOGGER = Logger.getLogger(this.getClass());
+	private final Logger LOGGER = LogManager.getLogger(this.getClass());
 	
 	@Autowired
 	private UserRepository userRepository;
@@ -31,7 +35,7 @@ public class UserService {
 		return userRepository.save(user);
 	}
 	
-	public UserEntity getUser(Long id) {
+	public Optional<UserEntity> getUser(Long id) {
 		LOGGER.info("Buscando o usuário de código " + id);
 		return userRepository.findById(id);
 	}

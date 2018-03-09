@@ -4,7 +4,8 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 import org.dogsystem.permission.PermissionEntity;
 import org.dogsystem.service.PermissionService;
 import org.dogsystem.utils.Message;
@@ -28,7 +29,7 @@ public class PermissionController implements ServiceMap{
 	@Autowired
 	private PermissionService permissionService;
 
-	private final Logger LOGGER = Logger.getLogger(this.getClass());
+	private final Logger LOGGER = LogManager.getLogger(this.getClass());
 	
 	private Message<PermissionEntity> message =  new Message<PermissionEntity>();
 

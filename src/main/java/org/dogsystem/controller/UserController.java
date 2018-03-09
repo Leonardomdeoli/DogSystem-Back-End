@@ -1,8 +1,11 @@
 package org.dogsystem.controller;
 
+import java.util.Optional;
+
 import javax.transaction.Transactional;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 import org.dogsystem.entity.AddressEntity;
 import org.dogsystem.entity.UserEntity;
 import org.dogsystem.exception.ServerException;
@@ -38,7 +41,7 @@ public class UserController implements ServiceMap {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-	private final Logger LOGGER = Logger.getLogger(this.getClass());
+	private final Logger LOGGER = LogManager.getLogger(this.getClass());
 
 	Message<UserEntity> message = new Message<UserEntity>();
 
@@ -63,7 +66,7 @@ public class UserController implements ServiceMap {
 	}
 
 	@GetMapping(value = "/id/{id}")
-	public UserEntity getUser(@PathVariable(name = "id") Long id) {
+	public Optional<UserEntity> getUser(@PathVariable(name = "id") Long id) {
 		return userService.getUser(id);
 	}
 

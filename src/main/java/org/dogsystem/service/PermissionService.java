@@ -2,7 +2,8 @@ package org.dogsystem.service;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 import org.dogsystem.permission.PermissionEntity;
 import org.dogsystem.repository.PermissionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ public class PermissionService {
 	@Autowired
 	private PermissionRepository permissionRepository;
 
-	private final Logger LOGGER = Logger.getLogger(this.getClass());
+	private final Logger LOGGER = LogManager.getLogger(this.getClass());
 
 	public List<PermissionEntity> findAll() {
 		LOGGER.info("Buscando todas as permissões.");

@@ -15,7 +15,7 @@ import org.springframework.security.web.access.channel.ChannelProcessingFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @EnableWebSecurity
-@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
+@Order(SecurityProperties.BASIC_AUTH_ORDER)
 public class SecurityConfiguration  extends WebSecurityConfigurerAdapter {
 
 	public static final String AUTH_USER = "ROLE_USER";
