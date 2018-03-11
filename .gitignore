@@ -2,6 +2,8 @@
 
 ### Eclipse ###
 
+src/main/application.properties
+
 # Compiled class file
 *.class
 
@@ -102,7 +104,6 @@ local.properties
 *.zip
 *.tar.gz
 *.rar
-*.properties
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
@@ -165,8 +166,6 @@ typings/
 
 # dotenv environment variables file
 .env
-
-
 
 # End of https://www.gitignore.io/api/java,node,eclipse
 /target/
