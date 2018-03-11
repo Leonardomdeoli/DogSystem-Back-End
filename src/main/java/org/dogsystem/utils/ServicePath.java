@@ -41,6 +41,6 @@ public final class ServicePath {
 
 	public static final String LOGOUT_PATH = PUBLIC_ROOT_PATH + "/logout";
 	
-	public static final String EMAIL_PATH = PUBLIC_ROOT_PATH + "/email";
+	public static final String EMAIL_PATH = PUBLIC_ROOT_PATH + "/email-send";
 
 }

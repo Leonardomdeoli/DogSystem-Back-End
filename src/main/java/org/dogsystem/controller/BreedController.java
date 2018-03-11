@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.dogsystem.entity.BreedEntity;
 import org.dogsystem.enumeration.TipoAnimal;
 import org.dogsystem.service.BreedService;
@@ -14,7 +14,6 @@ import org.dogsystem.utils.ServiceMap;
 import org.dogsystem.utils.ServicePath;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -73,7 +72,7 @@ public class BreedController implements ServiceMap {
 
 		message.AddField("mensagem", String.format(" A raça %s foi salvo com sucesso", breed.getName()));
 		message.setData(breed);
-		return ResponseEntity.status(HttpStatus.OK).body(message);
+		return ResponseEntity.ok(message);
 	}
 
 	@PutMapping
@@ -83,7 +82,7 @@ public class BreedController implements ServiceMap {
 
 		message.AddField("mensagem", String.format(" A raça %s foi alterada com sucesso", breed.getName()));
 		message.setData(breed);
-		return ResponseEntity.status(HttpStatus.OK).body(message);
+		return ResponseEntity.ok(message);
 	}
 
 	@DeleteMapping
@@ -92,6 +91,6 @@ public class BreedController implements ServiceMap {
 		breedService.delete(breed);
 
 		message.AddField("mensagem", String.format(" A raça %s foi apagada com sucesso", breed.getName()));
-		return ResponseEntity.status(HttpStatus.OK).body(message);
+		return ResponseEntity.ok(message);
 	}
 }
