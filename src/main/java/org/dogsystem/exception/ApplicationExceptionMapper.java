@@ -4,8 +4,7 @@ import static org.dogsystem.exception.ExceptionConstants.PARAMETER_VALUE_EXCEPTI
 
 import javax.validation.ConstraintViolationException;
 
-import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -19,7 +18,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @Component
 public class ApplicationExceptionMapper extends ResponseEntityExceptionHandler {
 
-	private static final Logger LOGGER = LogManager.getLogger(ApplicationExceptionMapper.class);
+	private final Logger LOGGER = Logger.getLogger(this.getClass());
 
 	@ResponseBody
 	@ExceptionHandler(Exception.class)

@@ -7,8 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.dogsystem.utils.ServicePath;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,7 +32,7 @@ public class ReportService {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
-	private final Logger LOGGER = LogManager.getLogger(this.getClass());
+	private final Logger LOGGER = Logger.getLogger(this.getClass());
 
 	@GetMapping(value = ServicePath.REPORT_PATH + "/report-racas")
 	@ResponseBody

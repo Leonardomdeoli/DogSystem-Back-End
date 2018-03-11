@@ -1,4 +1,3 @@
-
 INSERT INTO tb_breed (NAME, LIFE, WEIGHT, HEIGHT, TIPO_ANIMAL) VALUES
 			
 		('Akita', '10 a 12 anos', '30kg a 60kg', '23cm a 28cm',0),

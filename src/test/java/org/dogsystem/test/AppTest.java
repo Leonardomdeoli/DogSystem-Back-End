@@ -8,8 +8,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.io.IOException;
 
-import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.dogsystem.controller.UserController;
 import org.dogsystem.utils.ServicePath;
 import org.json.JSONException;
@@ -30,7 +29,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 @SpringBootTest
 public class AppTest {
 
-	private static final Logger LOGGER = LogManager.getLogger(AppTest.class);
+	private final Logger LOGGER = Logger.getLogger(this.getClass());
 
 	@Autowired
 	private UserController usuarioController;

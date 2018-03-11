@@ -1,10 +1,8 @@
 package org.dogsystem.service;
 
-import org.apache.logging.log4j.Logger;
-
 import java.util.Optional;
 
-import org.apache.logging.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.dogsystem.entity.UserEntity;
 import org.dogsystem.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +13,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
 	
-	private final Logger LOGGER = LogManager.getLogger(this.getClass());
+	private final Logger LOGGER = Logger.getLogger(this.getClass());
 	
 	@Autowired
 	private UserRepository userRepository;

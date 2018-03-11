@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.dogsystem.entity.AgendaServiceEntity;
 import org.dogsystem.repository.AgendaServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +35,7 @@ public class AgendaService {
 		times.add("18:00");
 	}
 
-	private final Logger LOGGER = LogManager.getLogger(this.getClass());
+	private final Logger LOGGER = Logger.getLogger(this.getClass());
 
 	public Page<AgendaServiceEntity> findAll(int pagina, int qtd) {
 		LOGGER.info("Buscando todos os agendamentos.");

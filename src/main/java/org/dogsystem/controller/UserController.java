@@ -4,8 +4,7 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 
-import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.dogsystem.entity.AddressEntity;
 import org.dogsystem.entity.UserEntity;
 import org.dogsystem.exception.ServerException;
@@ -41,7 +40,7 @@ public class UserController implements ServiceMap {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-	private final Logger LOGGER = LogManager.getLogger(this.getClass());
+	private final Logger LOGGER = Logger.getLogger(this.getClass());
 
 	Message<UserEntity> message = new Message<UserEntity>();
 
@@ -118,6 +117,10 @@ public class UserController implements ServiceMap {
 
 		user.setAddress(address);
 
+		if(user.getPassword().length() < 10) {
+			user.setPassword(passwordEncoder.encode(user.getPassword()));
+		}
+		
 		user = userService.save(user);
 		message.AddField("mensagem", String.format(" O usuário %s foi alterado com sucesso", user.getName()));
 		message.setData(user);

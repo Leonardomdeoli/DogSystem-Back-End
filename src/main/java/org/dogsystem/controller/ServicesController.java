@@ -2,8 +2,7 @@ package org.dogsystem.controller;
 
 import javax.transaction.Transactional;
 
-import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.dogsystem.entity.ServicesEntity;
 import org.dogsystem.enumeration.Size;
 import org.dogsystem.service.ServicesService;
@@ -29,7 +28,7 @@ public class ServicesController {
 	@Autowired
 	private ServicesService services;
 
-	private final Logger LOGGER = LogManager.getLogger(this.getClass());
+	private final Logger LOGGER = Logger.getLogger(this.getClass());
 
 	private Message<ServicesEntity> message = new Message<ServicesEntity>();
 
