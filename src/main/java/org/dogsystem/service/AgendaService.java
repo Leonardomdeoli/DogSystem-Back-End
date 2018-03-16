@@ -8,8 +8,6 @@ import org.apache.log4j.Logger;
 import org.dogsystem.entity.AgendaServiceEntity;
 import org.dogsystem.repository.AgendaServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -37,9 +35,9 @@ public class AgendaService {
 
 	private final Logger LOGGER = Logger.getLogger(this.getClass());
 
-	public Page<AgendaServiceEntity> findAll(int pagina, int qtd) {
+	public List<AgendaServiceEntity> findAll() {
 		LOGGER.info("Buscando todos os agendamentos.");
-		return agendaRepository.findAll(new PageRequest(pagina, qtd));
+		return agendaRepository.findAll();
 	}
 
 	public List<String> findByTime(Date date) {
@@ -61,10 +59,10 @@ public class AgendaService {
 		return agendaRepository.save(agenda);
 	}
 
-	public Page<AgendaServiceEntity> findByAgendamento(Date dataInicial, Date dataFinal, int pagina, int qtd) {
+	public List<AgendaServiceEntity> findByAgendamento(Date dataInicial, Date dataFinal) {
 		if (dataFinal == null) {
-			return agendaRepository.findBySchedulingDateEquals(dataInicial, new PageRequest(pagina, qtd));
+			return agendaRepository.findBySchedulingDateEquals(dataInicial);
 		}
-		return agendaRepository.findBySchedulingDateBetween(dataInicial, dataFinal, new PageRequest(pagina, qtd));
+		return agendaRepository.findBySchedulingDateBetween(dataInicial, dataFinal);
 	}
 }

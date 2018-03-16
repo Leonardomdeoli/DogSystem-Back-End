@@ -1,17 +1,17 @@
 package org.dogsystem.repository;
 
+import java.util.List;
+
 import org.dogsystem.entity.ServicesEntity;
-import org.dogsystem.enumeration.Size;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.dogsystem.enumeration.Porte;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ServicesRepository extends JpaRepository<ServicesEntity, Long> {
 
-	public Page<ServicesEntity> findByNameStartingWithAndSize(String name, Size size, Pageable pageable);
+	public List<ServicesEntity> findByNameStartingWithAndSize(String name, Porte size);
 
-	public Page<ServicesEntity> findBySize(Size size, Pageable pageable);
+	public List<ServicesEntity> findBySize(Porte size);
 
-	public Page<ServicesEntity> findByNameStartingWith(String name, Pageable pageable);
+	public List<ServicesEntity> findByNameStartingWith(String name);
 
 }

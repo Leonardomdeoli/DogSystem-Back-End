@@ -1,11 +1,8 @@
 package org.dogsystem.controller;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 
-import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
 import org.apache.log4j.Logger;
@@ -55,7 +52,7 @@ public class EmailController {
 				throw new Exception("Email digitado não foi encontrado em nosso sistema.");
 			}
 
-			String senha = RandomAlphaNumeric.randomString(6);
+			String senha = RandomAlphaNumeric.randomString(8);
 
 			user.setPassword(passwordEncoder.encode(senha));
 

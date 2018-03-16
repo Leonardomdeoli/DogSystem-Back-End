@@ -8,7 +8,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import org.dogsystem.enumeration.Size;
+import org.dogsystem.enumeration.Porte;
 import org.dogsystem.utils.BaseEntity;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -25,7 +25,7 @@ public class ServicesEntity extends BaseEntity<Long> {
 	private String name;
 
 	@Enumerated(EnumType.ORDINAL)
-	private Size size;
+	private Porte size;
 
 	@Column(columnDefinition = "decimal(20,2)")
 	private double price;
@@ -38,11 +38,11 @@ public class ServicesEntity extends BaseEntity<Long> {
 		this.name = description;
 	}
 
-	public Size getSize() {
+	public Porte getSize() {
 		return size;
 	}
 
-	public void setSize(Size size) {
+	public void setSize(Porte size) {
 		this.size = size;
 	}
 

@@ -1,15 +1,16 @@
 package org.dogsystem.controller;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.apache.log4j.Logger;
 import org.dogsystem.entity.ServicesEntity;
-import org.dogsystem.enumeration.Size;
+import org.dogsystem.enumeration.Porte;
 import org.dogsystem.service.ServicesService;
 import org.dogsystem.utils.Message;
 import org.dogsystem.utils.ServicePath;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -32,33 +33,28 @@ public class ServicesController {
 
 	private Message<ServicesEntity> message = new Message<ServicesEntity>();
 
-	@GetMapping(value = "/pagina/{pagina}/qtd/{qtd}")
-	public Page<ServicesEntity> findAll(@PathVariable(name = "pagina") int pagina,
-			@PathVariable(name = "qtd") int qtd) {
+	@GetMapping
+	public List<ServicesEntity> findAll() {
 		LOGGER.info("Solicitando todos os serviços");
-		return services.findAll(pagina, qtd);
+		return services.findAll();
 	}
 
-	@GetMapping(value = "/criteria/{criteria}/param/{param}/pagina/{pagina}/qtd/{qtd}")
-	public Page<ServicesEntity> findAllBreed(@PathVariable(name = "criteria") String criteria,
-			@PathVariable(name = "param") Size param, @PathVariable(name = "pagina") int pagina,
-			@PathVariable(name = "qtd") int qtd) {
+	@GetMapping(value = "/criteria/{criteria}/param/{param}")
+	public List<ServicesEntity> findAllBreed(@PathVariable(name = "criteria") String criteria, @PathVariable(name = "param") Porte param) {
 		LOGGER.info("Solicitando todos as raças");
-		return services.findAllServices(criteria, param, pagina, qtd);
+		return services.findAllServices(criteria, param);
 	}
 
-	@GetMapping(value = "/param/{param}/pagina/{pagina}/qtd/{qtd}")
-	public Page<ServicesEntity> findAllBreed(@PathVariable(name = "param") Size param,
-			@PathVariable(name = "pagina") int pagina, @PathVariable(name = "qtd") int qtd) {
+	@GetMapping(value = "/param/{param}")
+	public List<ServicesEntity> findAllBreed(@PathVariable(name = "param") Porte param) {
 		LOGGER.info("Solicitando todos as raças");
-		return services.findAllServices(null, param, pagina, qtd);
+		return services.findAllServices(null, param);
 	}
 
-	@GetMapping(value = "/criteria/{criteria}/pagina/{pagina}/qtd/{qtd}")
-	public Page<ServicesEntity> findAllBreed(@PathVariable(name = "criteria") String criteria,
-			@PathVariable(name = "pagina") int pagina, @PathVariable(name = "qtd") int qtd) {
+	@GetMapping(value = "/criteria/{criteria}")
+	public List<ServicesEntity> findAllBreed(@PathVariable(name = "criteria") String criteria) {
 		LOGGER.info("Solicitando todos as raças");
-		return services.findAllServices(criteria, null, pagina, qtd);
+		return services.findAllServices(criteria, null);
 	}
 
 	@Transactional

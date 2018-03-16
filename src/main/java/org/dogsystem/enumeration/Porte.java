@@ -1,11 +1,11 @@
 package org.dogsystem.enumeration;
 
-public enum Size {
+public enum Porte {
 	Pequeno('P'), Medio('M'), Grande('G'), Gigante('A');
 
 	char size;
 
-	Size(char s) {
+	Porte(char s) {
 		size = s;
 	}
 

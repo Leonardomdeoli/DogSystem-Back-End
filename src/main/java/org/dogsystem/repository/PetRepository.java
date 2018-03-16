@@ -1,24 +1,20 @@
 package org.dogsystem.repository;
 
+import java.util.List;
+
 import org.dogsystem.entity.BreedEntity;
 import org.dogsystem.entity.PetEntity;
-import org.dogsystem.enumeration.Ativo;
 import org.dogsystem.enumeration.Sex;
 import org.dogsystem.enumeration.TipoAnimal;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PetRepository extends JpaRepository<PetEntity, Long>{
 
-	public Page<PetEntity> findBySexAndBreedAndUsadogLove(Sex sex, BreedEntity breed,Ativo ativo,Pageable pageable);
+	public List<PetEntity> findBySexAndBreedAndUsaDogLove(Sex sex, BreedEntity breed,boolean usaDogLove);
 
-	public Page<PetEntity> findByTipoAnimal(TipoAnimal animal,Pageable pageable);
+	public List<PetEntity> findByTipoAnimal(TipoAnimal animal);
 
-	public Page<PetEntity> findByNameStartingWith(String name,Pageable pageable);
+	public List<PetEntity> findByNameStartingWith(String name);
 
-	public Page<PetEntity> findByNameStartingWithAndTipoAnimal(String name, TipoAnimal animal,Pageable pageable);
-
-	public Page<PetEntity> findByAmigoPet(Ativo ativo, Pageable pageable);
-	
+	public List<PetEntity> findByNameStartingWithAndTipoAnimal(String name, TipoAnimal animal);
 }

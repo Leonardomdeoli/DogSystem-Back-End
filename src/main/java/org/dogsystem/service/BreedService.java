@@ -1,16 +1,12 @@
 package org.dogsystem.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.apache.log4j.Logger;
 import org.dogsystem.entity.BreedEntity;
 import org.dogsystem.enumeration.TipoAnimal;
 import org.dogsystem.repository.BreedRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -26,19 +22,17 @@ public class BreedService {
 		return breedRepository.findAll();
 	}
 
-	public Page<BreedEntity> findAllBreed(String name, TipoAnimal animal, int pagina, int qtd) {
+	public List<BreedEntity> findAllBreed(String name, TipoAnimal animal) {
 		LOGGER.info("Buscando todas as raças.");
 		
-		Pageable pageable  = new PageRequest(pagina, qtd);
-		
 		if (name == null) {
-			return breedRepository.findByTipoAnimal(animal,pageable);
+			return breedRepository.findByTipoAnimal(animal);
 		}
 
 		if (animal == null) {
-			return breedRepository.findByNameStartingWith(name, pageable);
+			return breedRepository.findByNameStartingWith(name);
 		}
-		return breedRepository.findByNameStartingWithAndTipoAnimal(name, animal, pageable);
+		return breedRepository.findByNameStartingWithAndTipoAnimal(name, animal);
 	}
 
 	public BreedEntity findOne(Long id) {

@@ -17,9 +17,9 @@ import javax.persistence.TemporalType;
 
 import org.dogsystem.enumeration.Ativo;
 import org.dogsystem.enumeration.Sex;
-import org.dogsystem.enumeration.Size;
 import org.dogsystem.enumeration.TipoAnimal;
 import org.dogsystem.utils.BaseEntity;
+import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "tb_pet")
@@ -57,15 +57,9 @@ public class PetEntity extends BaseEntity<Long>{
 	@Enumerated(EnumType.ORDINAL)
 	private Sex sex;
 	
-	@Enumerated(EnumType.ORDINAL)
-	private Size size;
-	
-	@Enumerated(EnumType.ORDINAL)
-	private Ativo usadogLove;
-	
-	@Enumerated(EnumType.ORDINAL)
-	private Ativo amigoPet;
-	
+	@Type(type="true_false")
+	private boolean usaDogLove;
+
 	@Enumerated(EnumType.ORDINAL)
 	private TipoAnimal tipoAnimal;
 	
@@ -132,29 +126,13 @@ public class PetEntity extends BaseEntity<Long>{
 	public void setSex(Sex sex) {
 		this.sex = sex;
 	}
-
-	public Size getSize() {
-		return size;
+	
+	public boolean isUsaDogLove() {
+		return usaDogLove;
 	}
 
-	public void setSize(Size size) {
-		this.size = size;
-	}
-
-	public Ativo getUsadogLove() {
-		return usadogLove;
-	}
-
-	public void setUsadogLove(Ativo usadogLove) {
-		this.usadogLove = usadogLove;
-	}
-
-	public Ativo getAmigoPet() {
-		return amigoPet;
-	}
-
-	public void setAmigoPet(Ativo amigoPet) {
-		this.amigoPet = amigoPet;
+	public void setUsaDogLove(boolean usaDogLove) {
+		this.usaDogLove = usaDogLove;
 	}
 
 	public TipoAnimal getTipoAnimal() {

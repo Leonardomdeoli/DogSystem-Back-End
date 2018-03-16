@@ -8,6 +8,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.dogsystem.enumeration.Porte;
 import org.dogsystem.enumeration.TipoAnimal;
 import org.dogsystem.utils.BaseEntity;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -32,6 +33,9 @@ public class BreedEntity extends BaseEntity<Long> {
 	
 	@Enumerated(EnumType.ORDINAL)
 	private TipoAnimal tipoAnimal;
+	
+	@Enumerated(EnumType.ORDINAL)
+	private Porte porte;
 	
 	public String getName() {
 		return name;
@@ -71,5 +75,13 @@ public class BreedEntity extends BaseEntity<Long> {
 
 	public void setTipoAnimal(TipoAnimal tipoAnimal) {
 		this.tipoAnimal = tipoAnimal;
+	}
+
+	public Porte getPorte() {
+		return porte;
+	}
+
+	public void setPorte(Porte porte) {
+		this.porte = porte;
 	}
 }

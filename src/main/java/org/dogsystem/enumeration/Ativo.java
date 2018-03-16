@@ -1,15 +1,15 @@
 package org.dogsystem.enumeration;
 
 public enum Ativo {
-	True(true), False(false);
+	SIM('S'), NAO('N');
 
-	boolean ativo;
+	char ativo;
 
-	Ativo(boolean s) {
+	Ativo(char s) {
 		ativo = s;
 	}
 
-	boolean getSize() {
+	public char getAtivo() {
 		return ativo;
 	}
 }

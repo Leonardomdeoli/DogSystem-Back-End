@@ -1,15 +1,12 @@
 package org.dogsystem.service;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.dogsystem.entity.ServicesEntity;
-import org.dogsystem.enumeration.Size;
+import org.dogsystem.enumeration.Porte;
 import org.dogsystem.repository.ServicesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,9 +17,9 @@ public class ServicesService {
 
 	private final Logger LOGGER = Logger.getLogger(this.getClass());
 
-	public Page<ServicesEntity> findAll(int pagina, int qtd) {
+	public List<ServicesEntity> findAll() {
 		LOGGER.info("Buscando todos os serviços.");
-		return serviceRepo.findAll(new PageRequest(pagina, qtd));
+		return serviceRepo.findAll();
 	}
 
 	public void delete(ServicesEntity service) {
@@ -39,19 +36,17 @@ public class ServicesService {
 		return serviceRepo.findOne(id);
 	}
 
-	public Page<ServicesEntity> findAllServices(String name, Size size,int pagina, int qtd) {
+	public List<ServicesEntity> findAllServices(String name, Porte porte) {
 		LOGGER.info("Buscando todos os serviços.");
 		
-		Pageable pageable  = new PageRequest(pagina, qtd);
-
 		if (name == null) {
-			return serviceRepo.findBySize(size,pageable);
+			return serviceRepo.findBySize(porte);
 		}
 
-		if (size == null) {
-			return serviceRepo.findByNameStartingWith(name,pageable);
+		if (porte == null) {
+			return serviceRepo.findByNameStartingWith(name);
 		}
 		
-		return serviceRepo.findByNameStartingWithAndSize(name, size,pageable);
+		return serviceRepo.findByNameStartingWithAndSize(name, porte);
 	}
 }

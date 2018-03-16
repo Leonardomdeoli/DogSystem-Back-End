@@ -1,5 +1,6 @@
 package org.dogsystem.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -14,7 +15,6 @@ import org.dogsystem.utils.Message;
 import org.dogsystem.utils.ServiceMap;
 import org.dogsystem.utils.ServicePath;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -44,24 +44,22 @@ public class UserController implements ServiceMap {
 
 	Message<UserEntity> message = new Message<UserEntity>();
 
-	@GetMapping(value = "/pagina/{pagina}/qtd/{qtd}")
-	public Page<UserEntity> findAll(@PathVariable(name = "pagina") int pagina, @PathVariable(name = "qtd") int qtd) {
+	@GetMapping
+	public List<UserEntity> findAll() {
 		LOGGER.info("Solicitando todos os de usuário registros.");
-		return userService.getUsers(pagina, qtd);
+		return userService.getUsers();
 	}
 
-	@GetMapping(value = "/criteria/{criteria}/pagina/{pagina}/qtd/{qtd}")
-	public Page<UserEntity> findAllUser(@PathVariable(name = "criteria") String criteria,
-			@PathVariable(name = "pagina") int pagina, @PathVariable(name = "qtd") int qtd) {
+	@GetMapping(value = "/criteria/{criteria}")
+	public List<UserEntity> findAllUser(@PathVariable(name = "criteria") String criteria) {
 		LOGGER.info("Solicitando todos os usuários");
-		return userService.getUser(criteria, pagina, qtd);
+		return userService.getUser(criteria);
 	}
 	
-	@GetMapping(value = "/name/{name}/pagina/{pagina}/qtd/{qtd}")
-	public Page<UserEntity> getUserName(@PathVariable(name = "name") String name,
-			@PathVariable(name = "pagina") int pagina, @PathVariable(name = "qtd") int qtd) {
+	@GetMapping(value = "/name/{name}")
+	public List<UserEntity> getUserName(@PathVariable(name = "name") String name) {
 		LOGGER.info("Buscando por usuário " + name);
-		return userService.getUser(name,pagina, qtd);
+		return userService.getUser(name);
 	}
 
 	@GetMapping(value = "/id/{id}")

@@ -1,13 +1,12 @@
 package org.dogsystem.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.apache.log4j.Logger;
 import org.dogsystem.entity.UserEntity;
 import org.dogsystem.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,9 +17,9 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 	
-	public Page<UserEntity> getUsers(int pagina, int qtd){
+	public List<UserEntity> getUsers(){
 		LOGGER.info("Buscandos todos os usuários.");
-		return userRepository.findAll(new PageRequest(pagina, qtd));
+		return userRepository.findAll();
 	}
 	
 	public void deleteUser(UserEntity user){
@@ -38,9 +37,9 @@ public class UserService {
 		return userRepository.findById(id);
 	}
 	
-	public Page<UserEntity> getUser(String name,int pagina, int qtd){
+	public List<UserEntity> getUser(String name){
 		LOGGER.info("Buscando todos os usuários com o nome " + name);
-		return userRepository.findByNameStartingWith(name, new PageRequest(pagina, qtd));
+		return userRepository.findByNameStartingWith(name);
 	}
 	
 }

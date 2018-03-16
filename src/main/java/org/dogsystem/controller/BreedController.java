@@ -12,7 +12,6 @@ import org.dogsystem.utils.Message;
 import org.dogsystem.utils.ServiceMap;
 import org.dogsystem.utils.ServicePath;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,26 +39,22 @@ public class BreedController implements ServiceMap {
 		return breedService.findAll();
 	}
 
-	@GetMapping(value = "/criteria/{criteria}/param/{param}/pagina/{pagina}/qtd/{qtd}")
-	public Page<BreedEntity> findAllBreed(@PathVariable(name = "criteria") String criteria,
-			@PathVariable(name = "param") TipoAnimal param, @PathVariable(name = "pagina") int pagina,
-			@PathVariable(name = "qtd") int qtd) {
+	@GetMapping(value = "/criteria/{criteria}/param/{param}")
+	public List<BreedEntity> findAllBreed(@PathVariable(name = "criteria") String criteria,	@PathVariable(name = "param") TipoAnimal param) {
 		LOGGER.info("Solicitando todos as raças");
-		return breedService.findAllBreed(criteria, param,pagina, qtd);
+		return breedService.findAllBreed(criteria, param);
 	}
 
-	@GetMapping(value = "/param/{param}/pagina/{pagina}/qtd/{qtd}")
-	public Page<BreedEntity> findAllBreed(@PathVariable(name = "param") TipoAnimal param,@PathVariable(name = "pagina") int pagina,
-			@PathVariable(name = "qtd") int qtd) {
+	@GetMapping(value = "/param/{param}")
+	public List<BreedEntity> findAllBreed(@PathVariable(name = "param") TipoAnimal param) {
 		LOGGER.info("Solicitando todos as raças");
-		return breedService.findAllBreed(null, param,pagina, qtd);
+		return breedService.findAllBreed(null, param);
 	}
 
-	@GetMapping(value = "/criteria/{criteria}/pagina/{pagina}/qtd/{qtd}")
-	public Page<BreedEntity> findAllBreed(@PathVariable(name = "criteria") String criteria,@PathVariable(name = "pagina") int pagina,
-			@PathVariable(name = "qtd") int qtd) {
+	@GetMapping(value = "/criteria/{criteria}")
+	public List<BreedEntity> findAllBreed(@PathVariable(name = "criteria") String criteria) {
 		LOGGER.info("Solicitando todos as raças");
-		return breedService.findAllBreed(criteria, null,pagina, qtd);
+		return breedService.findAllBreed(criteria, null);
 	}
 
 	@Transactional

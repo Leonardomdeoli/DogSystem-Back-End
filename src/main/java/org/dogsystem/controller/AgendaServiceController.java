@@ -11,7 +11,6 @@ import org.dogsystem.service.AgendaService;
 import org.dogsystem.utils.Message;
 import org.dogsystem.utils.ServicePath;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -34,11 +33,10 @@ public class AgendaServiceController {
 
 	private Message<AgendaServiceEntity> message = new Message<AgendaServiceEntity>();
 
-	@GetMapping(value = "/pagina/{pagina}/qtd/{qtd}")
-	public Page<AgendaServiceEntity> findAll(@PathVariable(name = "pagina") int pagina,
-			@PathVariable(name = "qtd") int qtd) {
+	@GetMapping
+	public List<AgendaServiceEntity> findAll() {
 		LOGGER.info("Solicitando todos os agendamento");
-		return agendaService.findAll(pagina, qtd);
+		return agendaService.findAll();
 	}
 
 	@GetMapping(value = "/data/{data}")
@@ -46,18 +44,15 @@ public class AgendaServiceController {
 		return agendaService.findByTime(data);
 	}
 
-	@GetMapping(value = "/pagina/{pagina}/qtd/{qtd}/datainicial/{dataInicial}")
-	public Page<AgendaServiceEntity> getAgendamentos(@PathVariable(name = "pagina") int pagina,
-			@PathVariable(name = "qtd") int qtd, @PathVariable(name = "dataInicial") Date dataInicial) {
-
-		return agendaService.findByAgendamento(dataInicial, null, pagina, qtd);
+	@GetMapping(value = "datainicial/{dataInicial}")
+	public List<AgendaServiceEntity> getAgendamentos(@PathVariable(name = "dataInicial") Date dataInicial) {
+		return agendaService.findByAgendamento(dataInicial, null);
 	}
 
-	@GetMapping(value = "/pagina/{pagina}/qtd/{qtd}/datainicial/{dataInicial}/datafinal/{dataFinal}")
-	public Page<AgendaServiceEntity> getAgendamentos(@PathVariable(name = "pagina") int pagina,
-			@PathVariable(name = "qtd") int qtd, @PathVariable(name = "dataInicial") Date dataInicial,
+	@GetMapping(value = "datainicial/{dataInicial}/datafinal/{dataFinal}")
+	public List<AgendaServiceEntity> getAgendamentos(@PathVariable(name = "dataInicial") Date dataInicial,
 			@PathVariable(name = "dataFinal") Date dataFinal) {
-		return agendaService.findByAgendamento(dataInicial, dataFinal, pagina, qtd);
+		return agendaService.findByAgendamento(dataInicial, dataFinal);
 	}
 
 	@Transactional

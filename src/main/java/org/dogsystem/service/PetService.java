@@ -1,7 +1,6 @@
 package org.dogsystem.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.apache.log4j.Logger;
 import org.dogsystem.entity.PetEntity;
