@@ -21,4 +21,5 @@ INSERT INTO tb_service (NAME, PRICE, SIZE) VALUES
 		('Banho e Tosa', 20.12, 1),	('Banho', 20.12, 3), ('Banho e Tosa', 50.12, 0);		
     
    	
+select * from tb_user_permission;
 
