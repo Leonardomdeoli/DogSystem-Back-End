@@ -3,10 +3,10 @@
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<style name="Title" fontName="Century Schoolbook L" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
-	<style name="SubTitle" forecolor="#666666" fontName="Century Schoolbook L" fontSize="18"/>
-	<style name="Column header" forecolor="#666666" fontName="Century Schoolbook L" fontSize="12" isBold="true"/>
-	<style name="Detail" fontName="Century Schoolbook L" fontSize="12"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" isItalic="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true" isUnderline="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12" isItalic="true"/>
 	<queryString>
 		<![CDATA[SELECT
      *
@@ -48,13 +48,15 @@ ORDER BY NAME]]>
 			<staticText>
 				<reportElement x="350" y="0" width="205" height="57" uuid="0234e31d-66de-40a9-ac78-582d36af1338"/>
 				<textElement textAlignment="Justified">
-					<font fontName="Century Schoolbook L" size="36" isBold="true"/>
+					<font fontName="Arial" size="36" isBold="true"/>
 				</textElement>
 				<text><![CDATA[DogSystem]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="350" y="50" width="200" height="20" uuid="7addd133-3ef1-4487-a960-7dde6bdb152d"/>
-				<textElement textAlignment="Center"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial"/>
+				</textElement>
 				<text><![CDATA[Um jeito novo de gerênciar seu pet]]></text>
 			</staticText>
 		</band>

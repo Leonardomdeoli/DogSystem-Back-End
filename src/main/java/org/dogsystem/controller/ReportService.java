@@ -84,5 +84,6 @@ public class ReportService {
 			LOGGER.error(ex.getMessage());
 			return new ResponseEntity<>("Erro ao gerar o relatório,  " + ex.getMessage(), HttpStatus.EXPECTATION_FAILED);
 		}
+		
 	}
 }

@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.dogsystem.entity.UserEntity;
 import org.dogsystem.utils.BaseBean;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -24,17 +23,14 @@ public class LoginDetailBean extends BaseBean implements UserDetails {
 
 	private final String password;
 	
-	private final UserEntity user;
-	
 	private final Set<String> roles;
 
-	public LoginDetailBean(Long id, String name, String email, String passwordHash, UserEntity user) {
+	public LoginDetailBean(Long id, String name, String email, String passwordHash) {
 		this.id = id;
 		this.name = name;
 		this.email = email;
 		this.password = passwordHash;
 		this.roles = new HashSet<String>();
-		this.user = user;
 	}
 
 	public Set<String> getRoles() {
@@ -75,7 +71,7 @@ public class LoginDetailBean extends BaseBean implements UserDetails {
 	public String getEmail() {
 		return email;
 	}
-
+	
 	@Override
 	public boolean isAccountNonExpired() {
 		return true;
@@ -99,9 +95,4 @@ public class LoginDetailBean extends BaseBean implements UserDetails {
 	public Long getId() {
 		return id;
 	}
-
-	public UserEntity getUser() {
-		return user;
-	}
-
 }

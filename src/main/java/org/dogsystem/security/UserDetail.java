@@ -23,7 +23,7 @@ public class UserDetail implements UserDetailsService {
 			throw new UsernameNotFoundException("Usuário com o email \"" + email + "\" não foi encontrado.");
 		}
 
-		LoginDetailBean login = new LoginDetailBean(user.getId(), user.getName(), user.getEmail(), user.getPassword(), user);
+		LoginDetailBean login = new LoginDetailBean(user.getId(), user.getName(), user.getEmail(), user.getPassword());
 
 		for (PermissionEntity permission : user.getPermissions()) {
 			login.addRole(permission.getRole());

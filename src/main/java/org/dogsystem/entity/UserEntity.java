@@ -76,24 +76,6 @@ public class UserEntity extends BaseEntity<Long> {
 	)
 	private List<PermissionEntity> permissions;
 	
-	public UserEntity() {
-	}
-
-	public UserEntity(String name, String cpf, String phone, String email, String password, Long number,
-			String complement, AddressEntity address, List<PermissionEntity> permissions) {
-		this.name = name;
-		this.cpf = cpf;
-		this.phone = phone;
-		this.email = email;
-		this.password = password;
-		this.number = number;
-		this.complement = complement;
-		this.address = address;
-		this.permissions = permissions;
-	}
-
-
-
 	public String getName() {
 		return name;
 	}

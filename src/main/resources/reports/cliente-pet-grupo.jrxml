@@ -17,15 +17,15 @@
            WHEN 0 THEN 'Macho'
            ELSE 'Fêmea'
        END AS 'Sexo',
-       CASE PET.SIZE
+       CASE breed.porte
            WHEN 0 THEN 'Pequeno'
            WHEN 1 THEN 'Medio'
            WHEN 2 THEN 'Grande'
            ELSE 'Gigante'
        END AS 'Porte',
-       BREED.NAME AS 'Raca'
+       breed.NAME AS 'Raca'
 FROM TB_PET PET
-INNER JOIN TB_BREED BREED ON BREED.ID = PET.COD_BREED
+INNER JOIN TB_BREED breed ON breed.ID = PET.COD_BREED
 INNER JOIN TB_USER USU ON USU.COD_USER = PET.COD_OWNER
 GROUP BY PET.NAME, USU.NAME
 ORDER BY USU.NAME, PET.COD_PET]]>
@@ -36,7 +36,9 @@ ORDER BY USU.NAME, PET.COD_PET]]>
 	<field name="Animal" class="java.lang.String"/>
 	<field name="DataNascimento" class="java.sql.Timestamp"/>
 	<field name="Sexo" class="java.lang.String"/>
-	<field name="Porte" class="java.lang.String"/>
+	<field name="Porte" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<field name="Raca" class="java.lang.String"/>
 	<variable name="V_COUNT" class="java.lang.Integer" resetType="Group" resetGroup="PROPRIETARIO" calculation="Count">
 		<variableExpression><![CDATA[1]]></variableExpression>
