@@ -3,6 +3,7 @@ package org.dogsystem.entity;
 import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 import org.dogsystem.utils.BaseEntity;
@@ -19,19 +20,19 @@ public class ImageEntity extends BaseEntity<Long>{
 	private String filetype;
 	
 	private String filename;
+
+	@Lob 
+    private byte[] base64;
 	
 	public ImageEntity() {
 	}
-	
+
 	public ImageEntity(Integer filesize, String filetype, String filename, byte[] base64) {
 		this.filesize = filesize;
 		this.filetype = filetype;
 		this.filename = filename;
 		this.base64 = base64;
 	}
-
-	@Column(columnDefinition="LONGBLOB")
-    private byte[] base64;
     
 	public Integer getFilesize() {
 		return filesize;
