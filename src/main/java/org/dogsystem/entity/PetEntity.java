@@ -15,6 +15,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.dogsystem.enumeration.Ativo;
 import org.dogsystem.enumeration.Sex;
 import org.dogsystem.enumeration.TipoAnimal;
 import org.dogsystem.utils.BaseEntity;

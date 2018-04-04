@@ -1,7 +1,6 @@
 package org.dogsystem.entity;
 
 import javax.persistence.AttributeOverride;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
