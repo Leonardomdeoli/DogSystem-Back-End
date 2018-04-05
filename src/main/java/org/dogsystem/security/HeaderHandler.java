@@ -2,16 +2,28 @@ package org.dogsystem.security;
 
 import java.io.IOException;
 
-import javax.servlet.*;
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.stereotype.Component;
 
 @Component
+@PropertySource("classpath:/application.properties")
 public class HeaderHandler implements LogoutSuccessHandler, Filter {
+
+	@Autowired
+	private Environment env;
 
 	@Override
 	public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication auth)
@@ -20,10 +32,12 @@ public class HeaderHandler implements LogoutSuccessHandler, Filter {
 	}
 
 	@Override
-	public void init(FilterConfig filterConfig) throws ServletException {}
+	public void init(FilterConfig filterConfig) throws ServletException {
+	}
 
 	@Override
-	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
+			throws IOException, ServletException {
 		HttpServletResponse response = (HttpServletResponse) servletResponse;
 
 		injectHeaders(response);
@@ -32,14 +46,16 @@ public class HeaderHandler implements LogoutSuccessHandler, Filter {
 	}
 
 	@Override
-	public void destroy() {	}
+	public void destroy() {
+	}
 
 	private void injectHeaders(HttpServletResponse response) {
-//		response.setHeader("Access-Control-Allow-Origin", "http://localhost:8081");
+		// response.setHeader("Access-Control-Allow-Origin", "http://localhost:8081");
 		response.setHeader("Access-Control-Allow-Origin", "https://dogsystemweb.herokuapp.com");
 		response.setHeader("Access-Control-Allow-Credentials", "true");
 		response.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS");
 		response.setHeader("Access-Control-Max-Age", "3600");
-		response.setHeader("Access-Control-Allow-Headers", "accept, authorization, content-type, x-requested-with, x-xsrf-token");
+		response.setHeader("Access-Control-Allow-Headers",
+				"accept, authorization, content-type, x-requested-with, x-xsrf-token");
 	}
 }
