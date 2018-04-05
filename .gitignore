@@ -1,5 +1,7 @@
 # Created by https://www.gitignore.io/api/java,node,eclipse
 
+*.properties 
+
 ### Eclipse ###
 
 # Compiled class file
@@ -167,3 +169,5 @@ typings/
 
 # End of https://www.gitignore.io/api/java,node,eclipse
 /target/
+
+src/main/java/org/dogsystem/security/HeaderHandler\.java
