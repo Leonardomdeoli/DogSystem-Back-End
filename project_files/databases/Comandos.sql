@@ -1,5 +1,7 @@
 USE db_dogsystem ;
 
+SELECT * FROM TB_UF;
+
 INSERT INTO 
    tb_uf (sigla) 
 VALUES ('SP');
@@ -18,7 +20,7 @@ VALUES (1, 'Risde attie','38414706', 1);
 
 INSERT INTO 
    tb_user (cod_user, complement, cpf, email, name, number, password, phone, cod_address)
-VALUES (1,null,'01763724636', 'leonardomdeoli@gmail.com', 'Leonardo Mendes de Oliveira',120, 
+VALUES (1,null,'33344470736', 'leonardomdeoli@gmail.com', 'Leonardo Mendes de Oliveira',120, 
 '0ccf5342a28ed1889254c7cf6ae8e20ac4014477d75d22136ba4254ab1781e4be5fe00058e1b4e81','3432221276',1);
 
 INSERT INTO 
@@ -27,6 +29,6 @@ VALUES (1, 'ROLE_ADMIN');
 
 INSERT INTO 
     tb_user_permission (cod_per, cod_user) 
-VALUES (1 ,1), (2 ,1);
+VALUES (1 ,1);
    
 
