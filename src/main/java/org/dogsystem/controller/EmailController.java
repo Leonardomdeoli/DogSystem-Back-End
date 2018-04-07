@@ -80,11 +80,11 @@ public class EmailController {
 
 			userService.save(user);
 			
-			message.AddField("mensagem", "Email enviado com sucesso, verifique em sua caixa e email");
+			message.AddField("mensagem", "Email enviado com sucesso, verifique em sua caixa e e-mail");
 			return ResponseEntity.ok(message);
 		} catch (Exception e) {
 			LOGGER.error("Ocorreu erro ao enviar email: " + e.getMessage());
-			message.AddField("mensagem", "Ocorreu erro ao enviar email: " + e.getMessage());
+			message.AddField("mensagem", "Ocorreu erro ao enviar email, tente novamente mais tarde");
 
 			return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(message);
 		}
