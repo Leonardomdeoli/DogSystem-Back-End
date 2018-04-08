@@ -3,10 +3,10 @@
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<style name="Title" fontName="DejaVu Sans" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
-	<style name="SubTitle" forecolor="#666666" fontName="DejaVu Sans" fontSize="18"/>
-	<style name="Column header" forecolor="#666666" fontName="DejaVu Sans" fontSize="12" isBold="true"/>
-	<style name="Detail" fontName="DejaVu Sans" fontSize="12"/>
+	<style name="Title" fontName="Lucida Sans" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Lucida Sans" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Lucida Sans" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Lucida Sans" fontSize="12"/>
 	<queryString>
 		<![CDATA[SELECT USU.NAME AS 'Proprietario',
        PET.COD_PET AS 'Codigo',
@@ -50,7 +50,7 @@ ORDER BY USU.NAME, PET.COD_PET]]>
 				<staticText>
 					<reportElement mode="Transparent" x="0" y="-1" width="91" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="f77fb35d-7e10-44b2-ab00-371c5803577d"/>
 					<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-						<font fontName="DejaVu Sans" size="14" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+						<font fontName="Lucida Sans" size="14" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 						<paragraph lineSpacing="Single"/>
 					</textElement>
 					<text><![CDATA[Proprietário:]]></text>
@@ -66,7 +66,7 @@ ORDER BY USU.NAME, PET.COD_PET]]>
 				<staticText>
 					<reportElement mode="Transparent" x="0" y="19" width="138" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="3ffe3bee-96d7-41f4-a9e0-0c762faf0a7d"/>
 					<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-						<font fontName="DejaVu Sans" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+						<font fontName="Lucida Sans" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 						<paragraph lineSpacing="Single"/>
 					</textElement>
 					<text><![CDATA[Dados dos Animais]]></text>
@@ -101,7 +101,7 @@ ORDER BY USU.NAME, PET.COD_PET]]>
 				<staticText>
 					<reportElement mode="Transparent" x="278" y="-1" width="74" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="8927f798-670e-4e88-b461-ff01be216771"/>
 					<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-						<font fontName="DejaVu Sans" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+						<font fontName="Lucida Sans" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 						<paragraph lineSpacing="Single"/>
 					</textElement>
 					<text><![CDATA[Telefone:]]></text>
@@ -121,7 +121,7 @@ ORDER BY USU.NAME, PET.COD_PET]]>
 				<staticText>
 					<reportElement mode="Transparent" x="0" y="0" width="138" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="c0d04f82-942d-4d91-9953-1b6bebcff1bc"/>
 					<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
-						<font fontName="DejaVu Sans" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+						<font fontName="Lucida Sans" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 						<paragraph lineSpacing="Single"/>
 					</textElement>
 					<text><![CDATA[Quantidade de animais:]]></text>
@@ -156,7 +156,7 @@ ORDER BY USU.NAME, PET.COD_PET]]>
 			<staticText>
 				<reportElement x="350" y="0" width="205" height="57" uuid="0234e31d-66de-40a9-ac78-582d36af1338"/>
 				<textElement textAlignment="Justified">
-					<font fontName="DejaVu Sans" size="36" isBold="true"/>
+					<font fontName="Lucida Sans" size="30" isBold="true"/>
 				</textElement>
 				<text><![CDATA[DogSystem]]></text>
 			</staticText>

@@ -32,7 +32,7 @@ public class UserService {
 		return userRepository.save(user);
 	}
 	
-	public Optional<UserEntity> getUser(Long id) {
+	public UserEntity getUser(Long id) {
 		LOGGER.info("Buscando o usuário de código " + id);
 		return userRepository.findById(id);
 	}

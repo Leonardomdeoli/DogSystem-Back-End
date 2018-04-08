@@ -63,7 +63,7 @@ public class UserController implements ServiceMap {
 	}
 
 	@GetMapping(value = "/id/{id}")
-	public Optional<UserEntity> getUser(@PathVariable(name = "id") Long id) {
+	public UserEntity getUser(@PathVariable(name = "id") Long id) {
 		return userService.getUser(id);
 	}
 

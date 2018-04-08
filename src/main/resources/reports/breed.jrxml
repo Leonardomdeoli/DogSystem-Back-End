@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pet-iReport" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="34bbff6a-af20-4ee8-b41b-350756214296">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.x" value="10"/>
 	<property name="ireport.y" value="0"/>
-	<style name="Title" fontName="DejaVu Sans" fontSize="26" isBold="true" isItalic="true" pdfFontName="Helvetica-Bold"/>
-	<style name="SubTitle" forecolor="#666666" fontName="DejaVu Sans" fontSize="18"/>
-	<style name="Column header" forecolor="#666666" fontName="DejaVu Sans" fontSize="12" isBold="true" isUnderline="true"/>
-	<style name="Detail" fontName="DejaVu Sans" fontSize="12" isItalic="true"/>
+	<style name="Title" fontName="Lucida Sans" fontSize="26" isBold="true" isItalic="false" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Lucida Sans" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Lucida Sans" fontSize="12" isBold="true" isUnderline="true"/>
+	<style name="Detail" fontName="Lucida Sans" fontSize="12" isItalic="true"/>
 	<queryString>
 		<![CDATA[SELECT
      *
@@ -46,16 +46,16 @@ ORDER BY NAME]]>
 				<text><![CDATA[Relátorio de Raças]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="350" y="0" width="205" height="57" uuid="0234e31d-66de-40a9-ac78-582d36af1338"/>
+				<reportElement x="374" y="11" width="163" height="35" uuid="0234e31d-66de-40a9-ac78-582d36af1338"/>
 				<textElement textAlignment="Justified">
-					<font fontName="DejaVu Sans" size="36" isBold="true"/>
+					<font fontName="Lucida Sans" size="28" isBold="true"/>
 				</textElement>
 				<text><![CDATA[DogSystem]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="350" y="50" width="200" height="20" uuid="7addd133-3ef1-4487-a960-7dde6bdb152d"/>
 				<textElement textAlignment="Center">
-					<font fontName="DejaVu Sans"/>
+					<font fontName="Lucida Sans"/>
 				</textElement>
 				<text><![CDATA[Um jeito novo de gerênciar seu pet]]></text>
 			</staticText>
