@@ -43,13 +43,15 @@ ORDER BY NAME]]>
 		<band height="70" splitType="Stretch">
 			<staticText>
 				<reportElement style="Title" x="0" y="13" width="263" height="33" uuid="019c1391-7946-404c-b769-cde5fb9abf5e"/>
-				<textElement verticalAlignment="Middle"/>
+				<textElement verticalAlignment="Middle">
+					<font size="24"/>
+				</textElement>
 				<text><![CDATA[Relátorio de Raças]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="374" y="11" width="163" height="35" uuid="0234e31d-66de-40a9-ac78-582d36af1338"/>
 				<textElement textAlignment="Justified">
-					<font fontName="Lucida Sans" size="28" isBold="true"/>
+					<font fontName="Lucida Sans" size="20" isBold="true"/>
 				</textElement>
 				<text><![CDATA[DogSystem]]></text>
 			</staticText>

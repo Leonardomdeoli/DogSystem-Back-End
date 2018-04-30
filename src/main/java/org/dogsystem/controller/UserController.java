@@ -126,8 +126,10 @@ public class UserController implements ServiceMap {
 		return ResponseEntity.status(HttpStatus.OK).body(message);
 	}
 
-	@DeleteMapping
-	public ResponseEntity<Message<UserEntity>> deletar(@RequestBody UserEntity user) {
+	@DeleteMapping(value = "/id/{id}")
+	public ResponseEntity<Message<UserEntity>> deletar(@PathVariable(name = "id") Long id) {
+		UserEntity user = userService.getUser(id);
+		
 		LOGGER.info(String.format("Pedido de exclusão do usuário %s.", user));
 
 		userService.deleteUser(user);

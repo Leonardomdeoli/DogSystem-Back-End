@@ -1,0 +1,30 @@
+{
+   "id":1,
+   "name":"leonardo",
+   "cpf":"07845296120",
+   "phone":"99143829",
+   "email":"leonardo2@gmail.com",
+   "number":121,
+   "complement":null,
+   "address":{
+      "id":1,
+      "name":"Rua China",
+      "zipcode":"38410-250",
+      "neighborhood":{
+         "id":1,
+         "name":"Jardim Europa",
+         "city":{
+            "id":1,
+            "name":"Uberlândia",
+            "uf":{
+               "id":1,
+               "sigla":"MG"
+            }
+         }
+      }
+   },
+   "permissions":[
+
+   ],
+   "password":"5fb6777919cba253042817b5688f3625d85674711535709bfae96e122202bee87872602b3256d67d"
+}
