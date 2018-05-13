@@ -10,6 +10,7 @@ import org.dogsystem.entity.AgendaServiceEntity;
 import org.dogsystem.service.AgendaService;
 import org.dogsystem.utils.Message;
 import org.dogsystem.utils.ServicePath;
+import org.hibernate.engine.transaction.jta.platform.internal.SynchronizationRegistryBasedSynchronizationStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,11 +41,7 @@ public class AgendaServiceController {
 	}
 
 	@GetMapping("/getAgendamentos")
-	public List<AgendaServiceEntity> getAgendamentos(
-			@RequestParam(value = "dataInicial") Date dataInicial,
-			@RequestParam(value = "dataFinal", required = false) Date dataFinal,
-			@RequestParam(value = "pet", required = false) Integer codPet,
-			@RequestParam(value = "service", required = false) Integer codService) {
+	public List<AgendaServiceEntity> getAgendamentos(@RequestParam(value = "datainicial") Date dataInicial, @RequestParam(value = "datafinal", required = false) Date dataFinal, @RequestParam(value = "pet", required = false) Integer codPet, @RequestParam(value = "service", required = false) Integer codService) {
 		return agendaService.findByAgendamento(dataInicial, dataFinal);
 	}
 
