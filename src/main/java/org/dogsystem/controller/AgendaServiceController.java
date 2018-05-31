@@ -41,8 +41,11 @@ public class AgendaServiceController {
 	}
 
 	@GetMapping("/getAgendamentos")
-	public List<AgendaServiceEntity> getAgendamentos(@RequestParam(value = "datainicial") Date dataInicial, @RequestParam(value = "datafinal", required = false) Date dataFinal, @RequestParam(value = "pet", required = false) Integer codPet, @RequestParam(value = "service", required = false) Integer codService) {
-		return agendaService.findByAgendamento(dataInicial, dataFinal);
+	public List<AgendaServiceEntity> getAgendamentos(@RequestParam(value = "datainicial") Date dataInicial,
+			@RequestParam(value = "datafinal", required = false) Date dataFinal,
+			@RequestParam(value = "pet", required = false) Integer codPet,
+			@RequestParam(value = "service", required = false) Integer codService) {
+		return agendaService.findByAgendamento(dataInicial, dataFinal, codPet, codService);
 	}
 
 	@Transactional

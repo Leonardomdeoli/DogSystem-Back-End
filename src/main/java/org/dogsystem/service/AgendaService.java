@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
+
 import org.apache.log4j.Logger;
 import org.dogsystem.entity.AgendaServiceEntity;
 import org.dogsystem.repository.AgendaServiceRepository;
@@ -15,6 +19,9 @@ public class AgendaService {
 
 	@Autowired
 	private AgendaServiceRepository agendaRepository;
+
+	@Autowired
+	private EntityManagerFactory entityManagerFactory;
 
 	private static List<String> times;
 
@@ -59,10 +66,56 @@ public class AgendaService {
 		return agendaRepository.save(agenda);
 	}
 
-	public List<AgendaServiceEntity> findByAgendamento(Date dataInicial, Date dataFinal) {
-		if (dataFinal == null) {
-			return agendaRepository.findBySchedulingDateEquals(dataInicial);
+	@SuppressWarnings("unchecked")
+	public List<AgendaServiceEntity> findByAgendamento(Date dataInicial, Date dataFinal, Integer codPet,
+			Integer codService) {
+
+		List<AgendaServiceEntity> agenda = null;
+		EntityManager session = null;
+		try {
+			session = entityManagerFactory.createEntityManager();
+
+			StringBuffer sql = new StringBuffer();
+			sql.append(" select * from tb_agenda_service ");
+			sql.append(" where ");
+
+			if (dataFinal != null) {
+				sql.append(" between :DATAINCIAL and :DATAFINAL ");
+			}else {
+				sql.append(" scheduling_date >= :DATAINCIAL ");
+			}
+			
+			if (codPet != null) {
+				sql.append(" and cod_pet = :CODPET ");
+			}
+
+			if (codService != null) {
+				sql.append(" and cod_service = :CODSERVICE ");
+			}
+
+
+			Query query = (Query) session.createNativeQuery(sql.toString(), AgendaServiceEntity.class);
+			query.setParameter("DATAINCIAL", dataInicial);
+
+			if (codPet != null) {
+				query.setParameter("CODPET", codPet);
+			}
+
+			if (codService != null) {
+				query.setParameter("CODSERVICE", codService);
+			}
+
+			if (dataFinal != null) {
+				query.setParameter("DATAFINAL", dataInicial);
+			}
+
+			agenda = query.getResultList();
+		} finally {
+			if (session.isOpen()) {
+				session.close();
+			}
 		}
-		return agendaRepository.findBySchedulingDateBetween(dataInicial, dataFinal);
+
+		return agenda;
 	}
 }

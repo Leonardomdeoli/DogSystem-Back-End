@@ -6,6 +6,7 @@ import javax.transaction.Transactional;
 
 import org.apache.log4j.Logger;
 import org.dogsystem.entity.PetEntity;
+import org.dogsystem.enumeration.Sex;
 import org.dogsystem.service.ImageService;
 import org.dogsystem.service.PetService;
 import org.dogsystem.utils.Message;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -40,6 +42,14 @@ public class PetController {
 	public List<PetEntity> findAll() {
 		LOGGER.info("Solicitando todos os animais");
 		return petService.findAll();
+	}
+	
+	@GetMapping("getPetSexoRaca")
+	public List<PetEntity> getPetSexoRaca(@RequestParam(value = "sex") Sex sexo, @RequestParam(value = "breed") Integer codBreed) {
+		
+		System.out.println(sexo);
+		
+		return petService.getPetSexoRaca(sexo, codBreed);
 	}
 
 	@GetMapping(value = "/id/{id}")

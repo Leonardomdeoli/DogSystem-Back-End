@@ -25,10 +25,15 @@ VALUES (1,null,'33344470736', 'leonardomdeoli@gmail.com', 'Leonardo Mendes de Ol
 
 INSERT INTO 
     tb_permission (cod_per, role) 
-VALUES (1, 'ROLE_ADMIN');
+VALUES (1, 'ROLE_ADMIN'), (2, 'ROLE_EMPLOYEE'), (3, 'ROLE_USER');
 
 INSERT INTO 
     tb_user_permission (cod_per, cod_user) 
 VALUES (1 ,1);
    
+
+
+INSERT INTO 
+    tb_permission (cod_per, role) 
+VALUES (1, 'ROLE_ADMIN');
 
