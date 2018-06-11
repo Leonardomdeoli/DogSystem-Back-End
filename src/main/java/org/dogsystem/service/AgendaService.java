@@ -80,7 +80,7 @@ public class AgendaService {
 			sql.append(" where ");
 
 			if (dataFinal != null) {
-				sql.append(" between :DATAINCIAL and :DATAFINAL ");
+				sql.append(" scheduling_date between :DATAINCIAL and :DATAFINAL ");
 			}else {
 				sql.append(" scheduling_date >= :DATAINCIAL ");
 			}

@@ -1,6 +1,7 @@
 package org.dogsystem.controller;
 
 import java.io.OutputStream;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.lookup.DataSourceLookupFailureException;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,23 +33,20 @@ public class ReportService {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-	
+
 	private final Logger LOGGER = Logger.getLogger(this.getClass());
 
-	@GetMapping(value = ServicePath.REPORT_PATH + "/report-racas")
+	@GetMapping(value = ServicePath.REPORT_PATH)
 	@ResponseBody
-	public ResponseEntity<Object> getReportBreed(HttpServletResponse response) {
+	public ResponseEntity<Object> getReportAgendamentos(HttpServletResponse response,
+			@RequestParam(value = "descrRel") String descrRel,
+			@RequestParam(value = "data", required = false) Date dataInicial) {
 		Map<String, Object> params = new HashMap<String, Object>();
-		LOGGER.info("Gerando relatorios de raças");
-		return buildReport(response, "Relatorio-de-racas", "src/main/resources/reports/breed.jrxml", params);
-	}
-	
-	@GetMapping(value = ServicePath.REPORT_PATH + "/report-clientes-pet")
-	@ResponseBody
-	public ResponseEntity<Object> getReportClientesPet(HttpServletResponse response) {
-		Map<String, Object> params = new HashMap<String, Object>();
-		LOGGER.info("Gerando relatorios de clientes e seus pets");
-		return buildReport(response, "clientes-pet", "src/main/resources/reports/cliente-pet-grupo.jrxml", params);
+		if (dataInicial != null) {
+			params.put("schedulingDate", dataInicial);
+		}
+		LOGGER.info("Gerando relatorios de " + descrRel);
+		return buildReport(response, descrRel, "src/main/resources/reports/" + descrRel + ".jrxml", params);
 	}
 
 	private ResponseEntity<Object> buildReport(HttpServletResponse response, String name, String path,
@@ -73,7 +72,7 @@ public class ReportService {
 			JasperPrint jasperPrint = JasperFillManager.fillReport(report, params, ds.getConnection());
 			response.setContentType("application/x-pdf");
 			response.setHeader("Content-disposition", "inline; filename=" + name + ".pdf");
-			
+
 			LOGGER.info("Exportando em formato pdf");
 			final OutputStream outStream = response.getOutputStream();
 			JasperExportManager.exportReportToPdfStream(jasperPrint, outStream);
@@ -82,8 +81,9 @@ public class ReportService {
 		} catch (Exception ex) {
 
 			LOGGER.error(ex.getMessage());
-			return new ResponseEntity<>("Erro ao gerar o relatório,  " + ex.getMessage(), HttpStatus.EXPECTATION_FAILED);
+			return new ResponseEntity<>("Erro ao gerar o relatório,  " + ex.getMessage(),
+					HttpStatus.EXPECTATION_FAILED);
 		}
-		
+
 	}
 }

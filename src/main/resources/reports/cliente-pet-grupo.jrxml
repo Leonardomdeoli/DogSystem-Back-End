@@ -4,10 +4,10 @@
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<property name="net.sf.jasperreports.awt.ignore.missing.font" value="true"/>
-	<style name="Title" fontName="Lucida Sans" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="Title" fontName="Lucida Sans" fontSize="26" isBold="true" isItalic="false" pdfFontName="Helvetica-Bold"/>
 	<style name="SubTitle" forecolor="#666666" fontName="Lucida Sans" fontSize="18"/>
-	<style name="Column header" forecolor="#666666" fontName="Lucida Sans" fontSize="12" isBold="true"/>
-	<style name="Detail" fontName="Lucida Sans" fontSize="12"/>
+	<style name="Column header" forecolor="#666666" fontName="Lucida Sans" fontSize="12" isBold="true" isUnderline="true"/>
+	<style name="Detail" fontName="Lucida Sans" fontSize="12" isItalic="true"/>
 	<queryString>
 		<![CDATA[SELECT USU.NAME AS 'Proprietario',
        PET.COD_PET AS 'Codigo',
@@ -151,8 +151,10 @@ ORDER BY USU.NAME, PET.COD_PET]]>
 		<band height="68" splitType="Stretch">
 			<staticText>
 				<reportElement style="Title" x="0" y="5" width="263" height="33" uuid="019c1391-7946-404c-b769-cde5fb9abf5e"/>
-				<textElement verticalAlignment="Middle"/>
-				<text><![CDATA[Relátorio de Clientes]]></text>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Relatório de Clientes]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="350" y="0" width="205" height="57" uuid="0234e31d-66de-40a9-ac78-582d36af1338"/>

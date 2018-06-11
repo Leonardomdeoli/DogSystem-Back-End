@@ -40,8 +40,27 @@ public class EmailController {
 	private UserService userService;
 
 	private final Logger LOGGER = Logger.getLogger(this.getClass());
-	
+
 	private Message<String> message = new Message<String>();
+
+	@GetMapping("/sendMailDogLove")
+	public ResponseEntity<Message<String>> sendMailDogLove(@RequestParam("texto") String htmlMsg, @RequestParam("email") String email) {
+		try {
+			if (email == null) {
+				throw new Exception("Ocorre um erro interno: email não foi encontrado informado.");
+			}
+
+			buildEmail(email, htmlMsg, "Sistema cruzamento para animais - Doglove");
+
+			message.AddField("mensagem", "Email enviado com sucesso");
+			return ResponseEntity.ok(message);
+		} catch (Exception e) {
+			LOGGER.error("Ocorreu erro ao enviar email: " + e.getMessage());
+			message.AddField("mensagem", "Ocorreu erro ao enviar email, tente novamente mais tarde");
+
+			return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(message);
+		}
+	}
 
 	@GetMapping
 	public ResponseEntity<Message<String>> sendMail(@RequestParam("email") String email) {
@@ -79,7 +98,7 @@ public class EmailController {
 			buildEmail(user.getEmail(), htmlMsg, "Sistema de Troca Senha - Recuperar Senha");
 
 			userService.save(user);
-			
+
 			message.AddField("mensagem", "Email enviado com sucesso, verifique em sua caixa e e-mail");
 			return ResponseEntity.ok(message);
 		} catch (Exception e) {
@@ -97,7 +116,6 @@ public class EmailController {
 		MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, false, "utf-8");
 		helper.setTo(email);
 		helper.setSubject(subject);
-
 		mailSender.send(mimeMessage);
 	}
 }

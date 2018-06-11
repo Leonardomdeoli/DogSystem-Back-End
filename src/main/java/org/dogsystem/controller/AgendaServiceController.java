@@ -47,6 +47,11 @@ public class AgendaServiceController {
 			@RequestParam(value = "service", required = false) Integer codService) {
 		return agendaService.findByAgendamento(dataInicial, dataFinal, codPet, codService);
 	}
+	
+	@GetMapping("/getTime")
+	public List<String> getTime(@RequestParam(value = "data") Date data) {
+		return agendaService.findByTime(data);
+	}
 
 	@Transactional
 	@PostMapping
@@ -56,7 +61,7 @@ public class AgendaServiceController {
 
 		agenda = agendaService.save(agenda);
 
-		message.AddField("mensagem", "O agendamento foi criado com sucesso.");
+		message.AddField("mensagem", "O agendamento do " + agenda.getPet().getName() + " foi criado com sucesso.");
 		message.setData(agenda);
 		return ResponseEntity.status(HttpStatus.OK).body(message);
 	}
@@ -66,7 +71,7 @@ public class AgendaServiceController {
 
 		agenda = agendaService.save(agenda);
 
-		message.AddField("mensagem", " O agendamento foi alterada com sucesso");
+		message.AddField("mensagem", " O agendamento do " + agenda.getPet().getName() + " foi alterada com sucesso");
 		message.setData(agenda);
 		return ResponseEntity.status(HttpStatus.OK).body(message);
 	}
