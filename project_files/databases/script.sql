@@ -1,8 +1,6 @@
 USE db_dogsystem ;
 
-SELECT * FROM TB_UF;
-
-INSERT INTO 
+INSERT  INTO 
    tb_uf (sigla) 
 VALUES ('SP');
 
@@ -30,10 +28,3 @@ VALUES (1, 'ROLE_ADMIN'), (2, 'ROLE_EMPLOYEE'), (3, 'ROLE_USER');
 INSERT INTO 
     tb_user_permission (cod_per, cod_user) 
 VALUES (1 ,1);
-   
-
-
-INSERT INTO 
-    tb_permission (cod_per, role) 
-VALUES (1, 'ROLE_ADMIN');
-

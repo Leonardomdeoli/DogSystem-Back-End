@@ -21,7 +21,7 @@ public class ServicesEntity extends BaseEntity<Long> {
 
 	@NotEmpty(message = "O campo descrição não pode ser vazio")
 	@NotNull(message = "O campo descrição não pode ser nulo")
-	@Column(nullable = false)
+	@Column(nullable = false, length = 50)
 	private String name;
 
 	@Enumerated(EnumType.ORDINAL)
@@ -29,6 +29,9 @@ public class ServicesEntity extends BaseEntity<Long> {
 
 	@Column(columnDefinition = "decimal(20,2)")
 	private double price;
+	
+	@Column(length = 500)
+	private String description;
 
 	public String getName() {
 		return name;
@@ -52,5 +55,13 @@ public class ServicesEntity extends BaseEntity<Long> {
 
 	public void setPrice(double price) {
 		this.price = price;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 }

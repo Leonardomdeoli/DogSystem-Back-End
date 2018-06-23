@@ -3,7 +3,6 @@ package org.dogsystem.entity;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import org.dogsystem.key.UserPermissionKey;
 import org.dogsystem.utils.BaseEntity;
 
 @Entity

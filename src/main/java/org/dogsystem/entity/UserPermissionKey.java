@@ -1,4 +1,4 @@
-package org.dogsystem.key;
+package org.dogsystem.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
