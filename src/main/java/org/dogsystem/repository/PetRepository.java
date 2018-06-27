@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.dogsystem.entity.BreedEntity;
 import org.dogsystem.entity.PetEntity;
+import org.dogsystem.entity.UserEntity;
 import org.dogsystem.enumeration.Sex;
 import org.dogsystem.enumeration.TipoAnimal;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,4 +18,6 @@ public interface PetRepository extends JpaRepository<PetEntity, Long>{
 	public List<PetEntity> findByNameStartingWith(String name);
 
 	public List<PetEntity> findByNameStartingWithAndTipoAnimal(String name, TipoAnimal animal);
+	
+	public List<PetEntity> findByUser(UserEntity user);
 }

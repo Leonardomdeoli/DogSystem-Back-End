@@ -68,7 +68,7 @@ public class AgendaService {
 
 	@SuppressWarnings("unchecked")
 	public List<AgendaServiceEntity> findByAgendamento(Date dataInicial, Date dataFinal, Integer codPet,
-			Integer codService) {
+			Integer codService, Integer codUser) {
 
 		List<AgendaServiceEntity> agenda = null;
 		EntityManager session = null;
@@ -81,24 +81,27 @@ public class AgendaService {
 
 			if (dataFinal != null) {
 				sql.append(" scheduling_date between :DATAINCIAL and :DATAFINAL ");
-			}else {
+			} else {
 				sql.append(" scheduling_date >= :DATAINCIAL ");
 			}
-			
+
 			if (codPet != null) {
 				sql.append(" and cod_pet = :CODPET ");
+			} else if (codUser != null) {
+				sql.append(" and cod_pet in (select cod_pet from tb_pet where cod_owner = :CODUSER) ");
 			}
 
 			if (codService != null) {
 				sql.append(" and cod_service = :CODSERVICE ");
 			}
 
-
 			Query query = (Query) session.createNativeQuery(sql.toString(), AgendaServiceEntity.class);
 			query.setParameter("DATAINCIAL", dataInicial);
 
 			if (codPet != null) {
 				query.setParameter("CODPET", codPet);
+			} else if (codUser != null) {
+				query.setParameter("CODUSER", codUser);
 			}
 
 			if (codService != null) {

@@ -10,7 +10,6 @@ import org.dogsystem.entity.AgendaServiceEntity;
 import org.dogsystem.service.AgendaService;
 import org.dogsystem.utils.Message;
 import org.dogsystem.utils.ServicePath;
-import org.hibernate.engine.transaction.jta.platform.internal.SynchronizationRegistryBasedSynchronizationStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -44,8 +43,9 @@ public class AgendaServiceController {
 	public List<AgendaServiceEntity> getAgendamentos(@RequestParam(value = "datainicial") Date dataInicial,
 			@RequestParam(value = "datafinal", required = false) Date dataFinal,
 			@RequestParam(value = "pet", required = false) Integer codPet,
-			@RequestParam(value = "service", required = false) Integer codService) {
-		return agendaService.findByAgendamento(dataInicial, dataFinal, codPet, codService);
+			@RequestParam(value = "service", required = false) Integer codService,
+			@RequestParam(value = "user", required = false) Integer codUser) {
+		return agendaService.findByAgendamento(dataInicial, dataFinal, codPet, codService, codUser);
 	}
 	
 	@GetMapping("/getTime")
@@ -60,8 +60,7 @@ public class AgendaServiceController {
 		agenda.setId(null);
 
 		agenda = agendaService.save(agenda);
-
-		message.AddField("mensagem", "O agendamento do " + agenda.getPet().getName() + " foi criado com sucesso.");
+		message.AddField("mensagem", "Agendamento foi criado com sucesso.");  
 		message.setData(agenda);
 		return ResponseEntity.status(HttpStatus.OK).body(message);
 	}

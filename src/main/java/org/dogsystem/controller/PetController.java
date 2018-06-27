@@ -6,9 +6,11 @@ import javax.transaction.Transactional;
 
 import org.apache.log4j.Logger;
 import org.dogsystem.entity.PetEntity;
+import org.dogsystem.entity.UserEntity;
 import org.dogsystem.enumeration.Sex;
 import org.dogsystem.service.ImageService;
 import org.dogsystem.service.PetService;
+import org.dogsystem.service.UserService;
 import org.dogsystem.utils.Message;
 import org.dogsystem.utils.ServicePath;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +34,10 @@ public class PetController {
 	private PetService petService;
 
 	@Autowired
+	private UserService userService;
+	
+
+	@Autowired
 	private ImageService imageService;
 
 	private final Logger LOGGER = Logger.getLogger(this.getClass());
@@ -39,7 +45,13 @@ public class PetController {
 	private Message<PetEntity> message = new Message<PetEntity>();
 
 	@GetMapping
-	public List<PetEntity> findAll() {
+	public List<PetEntity> findAll(@RequestParam(value = "user", required = false) Long idUser) {
+		
+		if(idUser != null) {
+			UserEntity user = userService.getUser(idUser);
+			LOGGER.info("Solicitando todos os animais do usuário " + user.getName());
+			return petService.findByUser(user);
+		}
 		LOGGER.info("Solicitando todos os animais");
 		return petService.findAll();
 	}
@@ -60,9 +72,14 @@ public class PetController {
 
 	@Transactional
 	@PostMapping
-	public ResponseEntity<Message<PetEntity>> insert(@RequestBody PetEntity pet) {
+	public ResponseEntity<Message<PetEntity>> insert(@RequestBody PetEntity pet, @RequestParam(value = "user", required = false) Long idUser) {
 		LOGGER.info(String.format("Solicitação de criação do animal %s.", pet.getName()));
 		pet.setId(null);
+		
+		if(idUser != null) {
+			pet.setUser(userService.getUser(idUser));
+		}
+		
 		pet = petService.save(pet);
 
 		message.AddField("mensagem", String.format(" O animal %s foi salvo com sucesso", pet.getName()));

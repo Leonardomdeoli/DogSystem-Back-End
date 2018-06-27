@@ -9,6 +9,7 @@ import javax.persistence.Query;
 
 import org.apache.log4j.Logger;
 import org.dogsystem.entity.PetEntity;
+import org.dogsystem.entity.UserEntity;
 import org.dogsystem.enumeration.Sex;
 import org.dogsystem.repository.PetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,10 @@ public class PetService {
 	
 	public PetEntity findById(Long id){
 		return petRepository.findOne(id);
+	}
+	
+	public List<PetEntity> findByUser(UserEntity user){
+		return petRepository.findByUser(user);
 	}
 
 	public PetEntity findyPet(Long id) {

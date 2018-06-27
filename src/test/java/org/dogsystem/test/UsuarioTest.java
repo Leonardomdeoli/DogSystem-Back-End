@@ -35,7 +35,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class AppTest {
+public class UsuarioTest {
 
 	@Autowired
 	private UserController usuarioController;
@@ -45,7 +45,7 @@ public class AppTest {
 	private JSONObject jsonObject;
 	private JSONParser parser = new JSONParser();
 
-	private static final Logger LOGGER = Logger.getLogger(AppTest.class);
+	private static final Logger LOGGER = Logger.getLogger(UsuarioTest.class);
 	
 	@Before
 	public void init() throws IOException {
