@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pet-iReport" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="34bbff6a-af20-4ee8-b41b-350756214296">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pet-iReport" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true" uuid="34bbff6a-af20-4ee8-b41b-350756214296">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.x" value="67"/>
 	<property name="ireport.y" value="0"/>
 	<property name="net.sf.jasperreports.awt.ignore.missing.font" value="true"/>
 	<style name="Title" fontName="Lucida Sans" fontSize="26" isBold="true" isItalic="false" pdfFontName="Helvetica-Bold"/>
-	<style name="SubTitle" forecolor="#666666" fontName="Lucida Sans" fontSize="18"/>
-	<style name="Column header" forecolor="#666666" fontName="Lucida Sans" fontSize="12" isBold="true" isUnderline="true"/>
+	<style name="SubTitle" forecolor="#FFFFFF" fontName="Lucida Sans" fontSize="18"/>
+	<style name="Column header" forecolor="#FFFFFF" fontName="Lucida Sans" fontSize="12" isBold="true" isUnderline="true"/>
 	<style name="Detail" fontName="Lucida Sans" fontSize="12" isItalic="true"/>
 	<queryString>
 		<![CDATA[SELECT
@@ -26,6 +26,9 @@ ORDER BY NAME]]>
 	<field name="size" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="description" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<variable name="V_COUNT" class="java.lang.Integer" calculation="Count">
 		<variableExpression><![CDATA[1]]></variableExpression>
 		<initialValueExpression><![CDATA[]]></initialValueExpression>
@@ -36,25 +39,25 @@ ORDER BY NAME]]>
 	<title>
 		<band height="70" splitType="Stretch">
 			<staticText>
-				<reportElement style="Title" x="0" y="13" width="263" height="33" uuid="019c1391-7946-404c-b769-cde5fb9abf5e"/>
+				<reportElement style="Title" x="0" y="17" width="294" height="33" uuid="019c1391-7946-404c-b769-cde5fb9abf5e"/>
 				<textElement verticalAlignment="Middle">
-					<font size="24"/>
+					<font size="26"/>
 				</textElement>
 				<text><![CDATA[Relatório de Serviços]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="374" y="11" width="163" height="35" uuid="0234e31d-66de-40a9-ac78-582d36af1338"/>
-				<textElement textAlignment="Justified">
-					<font fontName="Lucida Sans" size="20" isBold="true"/>
-				</textElement>
-				<text><![CDATA[DOGSYSTEM]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="350" y="50" width="200" height="20" uuid="7addd133-3ef1-4487-a960-7dde6bdb152d"/>
+				<reportElement x="337" y="50" width="200" height="20" uuid="7addd133-3ef1-4487-a960-7dde6bdb152d"/>
 				<textElement textAlignment="Center">
 					<font fontName="Lucida Sans"/>
 				</textElement>
 				<text><![CDATA[Um jeito novo de gerênciar seu pet]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Title" x="362" y="17" width="148" height="33" uuid="44095cbf-b8b8-4a05-a540-a8c971cb9d0f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="22"/>
+				</textElement>
+				<text><![CDATA[DOGSYSTEM]]></text>
 			</staticText>
 		</band>
 	</title>
@@ -71,40 +74,47 @@ ORDER BY NAME]]>
 			</line>
 			<staticText>
 				<reportElement style="Column header" x="67" y="19" width="85" height="15" forecolor="#000000" uuid="8b61c748-78e9-43ab-b8e9-9764754b1f76"/>
-				<text><![CDATA[Descrição]]></text>
+				<textElement>
+					<font isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[NOME]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="0" y="19" width="54" height="15" forecolor="#000000" uuid="2b969fa4-63dd-43f8-9c27-2412b7bab47b"/>
 				<textElement>
-					<font isBold="true" isItalic="false" isStrikeThrough="false"/>
+					<font isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
 				</textElement>
-				<text><![CDATA[Código]]></text>
+				<text><![CDATA[CÓDIGO]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="326" y="19" width="62" height="15" forecolor="#000000" uuid="030232d7-05eb-466e-b698-dbcbf58f1acf"/>
-				<text><![CDATA[Preço]]></text>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[PREÇO]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="462" y="19" width="60" height="15" forecolor="#000000" uuid="85db1340-dd3a-4215-8e22-b02e83dc2699"/>
-				<text><![CDATA[Porte]]></text>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[PORTE]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="23" splitType="Stretch">
+		<band height="91" splitType="Stretch">
+			<rectangle>
+				<reportElement x="-2" y="2" width="555" height="16" forecolor="#CCCCFF" backcolor="#C0C0C0" uuid="7848aa64-9fff-4b44-bde5-e6b1ce793511"/>
+			</rectangle>
 			<line>
 				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="85ad4652-9e6b-41fb-a14f-207ea17d53ed"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineColor="#999999"/>
 				</graphicElement>
 			</line>
-			<rectangle>
-				<reportElement x="0" y="3" width="555" height="20" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="e13f23f1-3b40-42db-8f96-c6010c58307f">
-					<printWhenExpression><![CDATA[$V{V_COUNT}.intValue() % 2 != 0]]></printWhenExpression>
-				</reportElement>
-			</rectangle>
 			<textField>
-				<reportElement style="Detail" x="0" y="3" width="92" height="15" uuid="e6092704-6d44-4fb8-a3ad-865af862644d"/>
+				<reportElement style="Detail" x="0" y="3" width="67" height="15" uuid="e6092704-6d44-4fb8-a3ad-865af862644d"/>
 				<textFieldExpression><![CDATA[$F{cod_service}]]></textFieldExpression>
 			</textField>
 			<textField>
@@ -128,6 +138,26 @@ ORDER BY NAME]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{size} == 0 ? "Pequeno" : $F{size} == 1 ? "Medio" : $F{size} == 2 ? "Grande" : "Gigante"]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement style="Column header" x="214" y="23" width="96" height="15" forecolor="#000000" uuid="fa778893-c136-470f-a2ce-3470544a27bf"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[DESCRIÇÃO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="38" width="496" height="37" uuid="53efac68-df5b-496b-95a1-234890e5f318"/>
+				<textElement textAlignment="Justified">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="74" width="555" height="1" uuid="a6182923-7d78-4e3a-8d75-a15a2eefd5f6"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
 		</band>
 	</detail>
 	<columnFooter>
@@ -142,26 +172,19 @@ ORDER BY NAME]]>
 	</columnFooter>
 	<pageFooter>
 		<band height="27" splitType="Stretch">
-			<textField evaluationTime="Report">
-				<reportElement style="Column header" x="513" y="0" width="40" height="20" forecolor="#000000" uuid="c2680de6-dd4d-46cc-87b4-01227268189d"/>
-				<textElement>
-					<font size="10" isBold="false"/>
-				</textElement>
-				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement style="Column header" x="416" y="0" width="80" height="20" forecolor="#000000" uuid="fdfe3e50-a277-495b-9258-019619174283"/>
+			<textField pattern="">
+				<reportElement style="Column header" x="416" y="7" width="139" height="20" forecolor="#000000" uuid="fdfe3e50-a277-495b-9258-019619174283"/>
 				<textElement textAlignment="Right">
 					<font size="10" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" a"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
-			<textField pattern="EEEEE dd MMMMM yyyy">
+			<textField pattern="dd/MM/yyyy h.mm a">
 				<reportElement style="Column header" x="0" y="7" width="197" height="20" forecolor="#000000" uuid="32ab53fb-ca06-4f52-9881-b5051c7b52f6"/>
 				<textElement>
 					<font size="10" isBold="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd/MM/YYYY HH:mm").format(new java.util.Date())]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageFooter>
