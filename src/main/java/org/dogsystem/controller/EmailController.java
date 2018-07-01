@@ -103,7 +103,7 @@ public class EmailController {
 			return ResponseEntity.ok(message);
 		} catch (Exception e) {
 			LOGGER.error("Ocorreu erro ao enviar email: " + e.getMessage());
-			message.AddField("mensagem", "Ocorreu erro ao enviar email, tente novamente mais tarde");
+			message.AddField("mensagem", "Ocorreu erro ao enviar email, erro: " + e.getMessage());
 
 			return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(message);
 		}
