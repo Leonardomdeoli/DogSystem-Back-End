@@ -53,8 +53,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.httpBasic().and().authorizeRequests()
-
+		
+				http.httpBasic().and().authorizeRequests()
+				
 				// Global Authority to OPTIONS (permit all).
 				.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 
@@ -101,6 +102,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				// Permission Authorities.
 				.antMatchers(HttpMethod.GET, ServicePath.PERMISSION_PATH)
 				.hasAnyAuthority(AUTH_ADMIN, AUTH_EMPLOYEE, AUTH_USER)
+				
+				// Relatórios Authorities.
+				.antMatchers(HttpMethod.GET, ServicePath.REPORT_PATH)
+				.hasAnyAuthority(AUTH_ADMIN, AUTH_EMPLOYEE)
 
 				.anyRequest().fullyAuthenticated().and()
 
@@ -124,7 +129,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		return new OncePerRequestFilter() {
 
 			@Override
-			protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+			protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
+					FilterChain filterChain) throws ServletException, IOException {
 				CsrfToken csrf = (CsrfToken) request.getAttribute(CsrfToken.class.getName());
 
 				if (csrf != null) {

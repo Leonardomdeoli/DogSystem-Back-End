@@ -1,7 +1,10 @@
 package org.dogsystem.service;
 
 import java.util.List;
-import java.util.Optional;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
 
 import org.apache.log4j.Logger;
 import org.dogsystem.entity.UserEntity;
@@ -16,6 +19,9 @@ public class UserService {
 	
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private EntityManagerFactory entityManagerFactory;
 	
 	public List<UserEntity> getUsers(){
 		LOGGER.info("Buscandos todos os usuários.");
@@ -40,6 +46,31 @@ public class UserService {
 	public List<UserEntity> getUser(String name){
 		LOGGER.info("Buscando todos os usuários com o nome " + name);
 		return userRepository.findByNameStartingWith(name);
+	}
+	
+	public boolean existsPet(UserEntity user) throws Exception {
+
+		EntityManager session = null;
+		try {
+			session = entityManagerFactory.createEntityManager();
+
+			StringBuffer sql = new StringBuffer();
+			sql.append(" select count(*) from tb_pet where cod_owner = :CODUSER");
+
+			Query query = (Query) session.createNativeQuery(sql.toString());
+
+			query.setParameter("CODUSER", user.getId());
+
+			Object obj =  query.getSingleResult();
+			
+			System.out.println(obj);
+		} finally {
+			if (session.isOpen()) {
+				session.close();
+			}
+		}
+
+		return true;
 	}
 	
 }

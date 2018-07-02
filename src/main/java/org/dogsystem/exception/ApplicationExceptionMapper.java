@@ -24,16 +24,25 @@ public class ApplicationExceptionMapper extends ResponseEntityExceptionHandler {
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<ExceptionBean> handleControllerException(Exception exception) {
 		LOGGER.error(exception.getMessage(), exception);
-
+		
 		String msg = exception.getMessage();
-
+		
+		
 		if (exception instanceof NullPointerException) {
 			msg = "Erro interno NPE";
-		}
+		}else if(msg == null) {
+			msg = "Erro no servidor, localize o administrador do sistema";
+		}else  {
+			msg = msg.split(":")[1];
+		}	
+		
+		ExceptionBean exceptionBean = new ExceptionBean();
+		
+		exceptionBean.setMessage(msg);
 
-		ServerException exceptionBean = new ServerException(msg);
-
-		return new ResponseEntity<>(new ExceptionBean(exceptionBean), exceptionBean.getHttpStatus());
+		exceptionBean.setServerCode(PARAMETER_VALUE_EXCEPTION.getServerCode());
+		
+		return new ResponseEntity<>(exceptionBean, PARAMETER_VALUE_EXCEPTION.getHttpStatus());
 	}
 
 	@ResponseBody
@@ -65,8 +74,9 @@ public class ApplicationExceptionMapper extends ResponseEntityExceptionHandler {
 		ExceptionBean exceptionBean = new ExceptionBean();
 
 		StringBuffer buffer = new StringBuffer();
-		if (exception.getRootCause().getLocalizedMessage().indexOf("Cannot delete or update") > -1) {
-			buffer.append("Este registro já está ligado com outra tabela não sendo permitido sua exclusão");
+		String msg = exception.getRootCause().getLocalizedMessage();
+		if (msg.indexOf("Cannot delete or update") > -1) {
+			buffer.append("O registro não pode ser removido ou modificado ele possui ou ligação com outra tabela, favor verifique. <br/><br/> Mensagem técnica: " + msg);
 		} else {
 			buffer.append("\"" + exception.getRootCause().getLocalizedMessage().split("'")[1]);
 			buffer.append("\" cadastrado no banco, favor verifique.");
