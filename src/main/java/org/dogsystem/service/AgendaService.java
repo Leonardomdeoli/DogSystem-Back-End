@@ -94,6 +94,8 @@ public class AgendaService {
 			if (codService != null) {
 				sql.append(" and cod_service = :CODSERVICE ");
 			}
+			
+			sql.append("group by time, scheduling_date order by time");
 
 			Query query = (Query) session.createNativeQuery(sql.toString(), AgendaServiceEntity.class);
 			query.setParameter("DATAINCIAL", dataInicial);

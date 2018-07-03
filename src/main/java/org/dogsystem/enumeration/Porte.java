@@ -1,7 +1,7 @@
 package org.dogsystem.enumeration;
 
 public enum Porte {
-	Pequeno('P'), Medio('M'), Grande('G'), Gigante('A');
+	Pequeno('P'), Médio('M'), Grande('G'), Gigante('A');
 
 	char size;
 
