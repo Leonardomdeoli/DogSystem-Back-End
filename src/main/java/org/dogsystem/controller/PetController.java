@@ -92,7 +92,7 @@ public class PetController {
 		LOGGER.info(String.format("Solicitação de atualização do animal %s.", pet.getName()));
 
 		PetEntity petOld = petService.findById(pet.getId());
-		if (petOld.getImage().getId() != pet.getImage().getId()) {
+		if (petOld.getImage() != null && petOld.getImage().getId() != pet.getImage().getId()) {
 			imageService.delete(petOld.getImage());
 		}
 

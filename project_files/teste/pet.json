@@ -1,0 +1,16 @@
+{
+	"id": 1,
+	"name": "Abelha",
+	"dateBirth": 1433818800000,
+	"note": null,
+	"fertilePeriod": null,
+	"breed": {
+		"id": 1
+	},
+	"user": {
+		"id": 1
+	},
+	"sex": "femea",
+	"usaDogLove": true,
+	"tipoAnimal": "1"
+}

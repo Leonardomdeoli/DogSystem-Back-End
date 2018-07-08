@@ -1,0 +1,12 @@
+{
+	"schedulingDate": 1531537200000,
+	"lowDate": null,
+	"note": null,
+	"pet": {
+		"id": 1
+	},
+	"service": {
+		"id": 1
+	},
+	"time": "08:00"
+}

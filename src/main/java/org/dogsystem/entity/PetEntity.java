@@ -42,7 +42,7 @@ public class PetEntity extends BaseEntity<Long>{
 	private Date fertilePeriod;
 
 	@OneToOne(cascade =  CascadeType.ALL)
-	@JoinColumn(name = "cod_image", nullable = false)
+	@JoinColumn(name = "cod_image")
 	private ImageEntity image;
 	
 	@ManyToOne
